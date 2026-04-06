@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-dim": "#d7dae0",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container-low": "#f1f4fa",
+                        "secondary-fixed-dim": "#ffb692",
+                        "on-primary-container": "#8cafe7",
+                        "tertiary-container": "#25445d",
+                        "surface-container-high": "#e5e8ee",
+                        "primary-container": "#1a4273",
+                        "on-primary": "#ffffff",
+                        "on-error": "#ffffff",
+                        "on-tertiary-fixed-variant": "#2b4963",
+                        "surface-container": "#ebeef4",
+                        "on-secondary-fixed": "#341100",
+                        "inverse-on-surface": "#eef1f7",
+                        "primary-fixed": "#d5e3ff",
+                        "on-secondary-container": "#642600",
+                        "on-primary-fixed-variant": "#214779",
+                        "error-container": "#ffdad6",
+                        "primary-fixed-dim": "#a7c8ff",
+                        "outline-variant": "#c3c6d0",
+                        "on-surface-variant": "#43474f",
+                        "on-primary-fixed": "#001c3b",
+                        "tertiary": "#0a2e46",
+                        "surface-bright": "#f7f9ff",
+                        "on-tertiary": "#ffffff",
+                        "surface": "#f7f9ff",
+                        "error": "#ba1a1a",
+                        "secondary-container": "#fd8039",
+                        "on-surface": "#181c20",
+                        "surface-variant": "#dfe3e8",
+                        "on-background": "#181c20",
+                        "outline": "#737780",
+                        "on-secondary-fixed-variant": "#793000",
+                        "tertiary-fixed-dim": "#abcae8",
+                        "surface-tint": "#3b5f92",
+                        "secondary": "#9f4200",
+                        "on-tertiary-fixed": "#001d31",
+                        "on-tertiary-container": "#92b1ce",
+                        "inverse-primary": "#a7c8ff",
+                        "on-error-container": "#93000a",
+                        "surface-container-highest": "#dfe3e8",
+                        "primary": "#002c57",
+                        "background": "#f7f9ff",
+                        "secondary-fixed": "#ffdbcb",
+                        "tertiary-fixed": "#cce5ff",
+                        "inverse-surface": "#2d3135",
+                        "on-secondary": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "fontFamily": {
+                        "headline": ["Inter"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .tonal-shift { background-image: linear-gradient(to bottom, rgba(255,255,255,0.05), transparent); }
+    </style>
+</head>
+<body class="bg-surface text-on-surface antialiased min-h-screen">
+<!-- SideNavBar -->
+<aside class="fixed left-0 top-0 h-full w-64 z-50 bg-[#002c57] dark:bg-slate-900 text-white flex flex-col py-6 shadow-2xl font-inter text-sm antialiased">
+<div class="px-6 mb-8">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Network Intelligence logo abstract geometric icon in white and blue" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBVu6I0iF8-FNCa4qxZS8AK3VHvYbQiNYrrd0Mx84HF7qcdwL4oQg66dEsAymdMlfhx40U68ODxpPa9RxUZFF5v1JAiGNk2mU6XvCoTjHGe7YUs6iUgZ1wXz0VzB4cula3s-IMV_z4uI07_r9JCAR5BOZgMhPcm5TrySe4sPkZH39-HYL4SUKfgntQRQ3JqjGCCHIm9n_VGcAe5pIPMaMpDpPvBQvDqb3_t4qAN7HfmvA3xsxpfBIZ5usIAwSmvjDmd7_W2Kj3VT3s"/>
+</div>
+<div>
+<h1 class="text-white font-black tracking-widest uppercase">Admin Console</h1>
+<p class="text-[10px] text-slate-400 uppercase tracking-tighter">Network Intelligence</p>
+</div>
+</div>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="flex items-center px-6 py-3 text-slate-300 hover:bg-white/5 hover:text-white transition-all duration-200 ease-in-out group" href="#">
+<span class="material-symbols-outlined mr-3 text-lg" data-icon="dashboard">dashboard</span>
+<span>Dashboard</span>
+</a>
+<a class="flex items-center px-6 py-3 text-slate-300 hover:bg-white/5 hover:text-white transition-all duration-200 ease-in-out group" href="#">
+<span class="material-symbols-outlined mr-3 text-lg" data-icon="group">group</span>
+<span>Colaboradores</span>
+</a>
+<a class="flex items-center px-6 py-3 text-slate-300 hover:bg-white/5 hover:text-white transition-all duration-200 ease-in-out group" href="#">
+<span class="material-symbols-outlined mr-3 text-lg" data-icon="confirmation_number">confirmation_number</span>
+<span>Vouchers</span>
+</a>
+<a class="flex items-center px-6 py-3 text-slate-300 hover:bg-white/5 hover:text-white transition-all duration-200 ease-in-out group" href="#">
+<span class="material-symbols-outlined mr-3 text-lg" data-icon="sensors">sensors</span>
+<span>Sessões Ativas</span>
+</a>
+<!-- ACTIVE TAB: Relatórios -->
+<a class="flex items-center px-6 py-3 bg-white/10 text-white border-l-4 border-[#9f4200] font-medium transition-all duration-200 ease-in-out group" href="#">
+<span class="material-symbols-outlined mr-3 text-lg" data-icon="assessment">assessment</span>
+<span>Relatórios</span>
+</a>
+<a class="flex items-center px-6 py-3 text-slate-300 hover:bg-white/5 hover:text-white transition-all duration-200 ease-in-out group" href="#">
+<span class="material-symbols-outlined mr-3 text-lg" data-icon="settings">settings</span>
+<span>Configurações</span>
+</a>
+</nav>
+<div class="px-6 pt-6 border-t border-white/5">
+<div class="flex items-center gap-3 p-3 rounded-xl bg-white/5">
+<img class="w-8 h-8 rounded-full object-cover" data-alt="professional portrait of a male network administrator in a modern office environment with soft lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCB9KVrQ5YauuDtfu1ArMzVO-Jz2bndt3Ux8QXWAzk5wXulJPlPzdQjZKlkd7NADGCWccvklPTR4iYy6QRXZuHjij-2hAGxnXmqk5cD8KI-9GJl3UnTi2kOLhHxm60ibNTmXz5iDz8YeXoSt4YlXzixJVPJGR4JVkDvoouP4xJAvfX7juu1kK9iA0i9jTlN2FIiTDb3kWIQGHuWoWkBL-pADQOR2XmRqiiW825H19iGy6AdJMe4c4tBoP7hx0pQGnGkOC5XahfXFHY"/>
+<div class="overflow-hidden">
+<p class="text-xs font-semibold truncate">Ricardo Silva</p>
+<p class="text-[10px] text-slate-400 truncate">Admin Global</p>
+</div>
+<span class="material-symbols-outlined text-slate-500 text-sm ml-auto" data-icon="logout">logout</span>
+</div>
+</div>
+</aside>
+<!-- TopNavBar (Simulated Content) -->
+<header class="fixed top-0 right-0 left-64 h-16 bg-slate-50/80 backdrop-blur-xl z-40 border-b border-slate-200/50 shadow-sm flex justify-between items-center px-8">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary" data-icon="query_stats">query_stats</span>
+<span class="font-inter tracking-tight text-primary font-semibold">Análise de Dados em Tempo Real</span>
+</div>
+<div class="flex items-center gap-6">
+<div class="flex gap-4">
+<span class="material-symbols-outlined text-slate-500 cursor-pointer hover:text-primary transition-colors" data-icon="notifications">notifications</span>
+<span class="material-symbols-outlined text-slate-500 cursor-pointer hover:text-primary transition-colors" data-icon="settings">settings</span>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="pl-64 pt-16 min-h-screen bg-surface-container-low">
+<div class="p-8 max-w-7xl mx-auto">
+<!-- Editorial Header Section -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
+<div>
+<span class="label-sm text-secondary font-bold tracking-widest uppercase mb-2 block">Operações de Rede</span>
+<h2 class="text-3xl font-extrabold text-primary tracking-tight font-headline">Relatórios</h2>
+<p class="text-on-surface-variant body-md mt-1">Análise histórica de conexões e usuários.</p>
+</div>
+<div class="flex items-center gap-3">
+<button class="bg-gradient-to-r from-primary to-primary-container text-white px-5 py-2.5 rounded-xl shadow-lg hover:shadow-primary/20 transition-all active:scale-95 flex items-center gap-2 font-medium">
+<span class="material-symbols-outlined text-xl" data-icon="download">download</span>
+<span>Exportar Relatório</span>
+</button>
+</div>
+</div>
+<!-- Asymmetric Bento Filter Section -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-6 mb-10">
+<div class="lg:col-span-12 bg-surface-container-lowest p-6 rounded-xl shadow-[0_12px_32px_rgba(24,28,32,0.04)]">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+<!-- Filter: Período -->
+<div class="space-y-1.5">
+<label class="text-[10px] font-bold text-on-surface-variant tracking-wider uppercase pl-1">Período</label>
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-lg" data-icon="calendar_today">calendar_today</span>
+<input class="w-full bg-surface-container-high/40 border-none border-b-2 border-transparent focus:border-primary focus:ring-0 rounded-lg pl-10 py-2.5 text-sm transition-all placeholder:text-outline-variant" placeholder="01/10/2023 - 31/10/2023" type="text"/>
+</div>
+</div>
+<!-- Filter: Usuário -->
+<div class="space-y-1.5">
+<label class="text-[10px] font-bold text-on-surface-variant tracking-wider uppercase pl-1">Usuário</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-lg" data-icon="person">person</span>
+<input class="w-full bg-surface-container-high/40 border-none border-b-2 border-transparent focus:border-primary focus:ring-0 rounded-lg pl-10 py-2.5 text-sm transition-all placeholder:text-outline-variant" placeholder="Nome ou E-mail" type="text"/>
+</div>
+</div>
+<!-- Filter: Endereço MAC -->
+<div class="space-y-1.5">
+<label class="text-[10px] font-bold text-on-surface-variant tracking-wider uppercase pl-1">Endereço MAC</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-lg" data-icon="terminal">terminal</span>
+<input class="w-full bg-surface-container-high/40 border-none border-b-2 border-transparent focus:border-primary focus:ring-0 rounded-lg pl-10 py-2.5 text-sm transition-all placeholder:text-outline-variant" placeholder="00:00:00:00:00:00" type="text"/>
+</div>
+</div>
+<!-- Filter Action -->
+<div class="flex items-end">
+<button class="w-full h-[46px] bg-surface-container-high text-primary hover:bg-primary hover:text-white transition-all rounded-lg font-bold text-sm tracking-tight flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-xl" data-icon="filter_list">filter_list</span>
+                                Filtrar Resultados
+                            </button>
+</div>
+</div>
+</div>
+</div>
+<!-- Data Table Section -->
+<div class="bg-surface-container-lowest rounded-2xl shadow-[0_12px_32px_rgba(24,28,32,0.06)] overflow-hidden border border-outline-variant/10">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead class="bg-surface-container-low/50">
+<tr>
+<th class="px-8 py-5 text-[10px] font-bold text-on-surface-variant tracking-widest uppercase">Data &amp; Hora</th>
+<th class="px-8 py-5 text-[10px] font-bold text-on-surface-variant tracking-widest uppercase">Usuário</th>
+<th class="px-8 py-5 text-[10px] font-bold text-on-surface-variant tracking-widest uppercase">Dispositivo (MAC)</th>
+<th class="px-8 py-5 text-[10px] font-bold text-on-surface-variant tracking-widest uppercase">Duração</th>
+<th class="px-8 py-5 text-[10px] font-bold text-on-surface-variant tracking-widest uppercase">Status</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/10">
+<!-- Row 1 -->
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="px-8 py-6">
+<div class="flex flex-col">
+<span class="text-sm font-semibold text-primary">24 Out, 2023</span>
+<span class="text-xs text-on-surface-variant">14:32:15</span>
+</div>
+</td>
+<td class="px-8 py-6">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-lg bg-primary-fixed text-primary flex items-center justify-center font-bold text-xs">AM</div>
+<div>
+<p class="text-sm font-bold text-primary">André Martins</p>
+<p class="text-xs text-on-surface-variant">andre.m@network.int</p>
+</div>
+</div>
+</td>
+<td class="px-8 py-6">
+<span class="bg-surface-container-high px-2 py-1 rounded text-xs font-mono font-medium text-primary tracking-tight">4C:D5:77:8E:12:F1</span>
+</td>
+<td class="px-8 py-6">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-sm text-outline" data-icon="schedule">schedule</span>
+<span class="text-sm text-on-surface font-medium">04h 12m 05s</span>
+</div>
+</td>
+<td class="px-8 py-6">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wide bg-green-100 text-green-700">Concluído</span>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="bg-surface-container-low/20 hover:bg-surface-container-low transition-colors">
+<td class="px-8 py-6">
+<div class="flex flex-col">
+<span class="text-sm font-semibold text-primary">24 Out, 2023</span>
+<span class="text-xs text-on-surface-variant">12:10:44</span>
+</div>
+</td>
+<td class="px-8 py-6">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-lg bg-secondary-fixed text-secondary flex items-center justify-center font-bold text-xs">LF</div>
+<div>
+<p class="text-sm font-bold text-primary">Letícia Ferreira</p>
+<p class="text-xs text-on-surface-variant">leticia.f@network.int</p>
+</div>
+</div>
+</td>
+<td class="px-8 py-6">
+<span class="bg-surface-container-high px-2 py-1 rounded text-xs font-mono font-medium text-primary tracking-tight">A0:3B:E3:44:81:CC</span>
+</td>
+<td class="px-8 py-6">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-sm text-outline" data-icon="schedule">schedule</span>
+<span class="text-sm text-on-surface font-medium">01h 45m 12s</span>
+</div>
+</td>
+<td class="px-8 py-6">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wide bg-green-100 text-green-700">Concluído</span>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="px-8 py-6">
+<div class="flex flex-col">
+<span class="text-sm font-semibold text-primary">24 Out, 2023</span>
+<span class="text-xs text-on-surface-variant">09:55:00</span>
+</div>
+</td>
+<td class="px-8 py-6">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-lg bg-tertiary-fixed text-tertiary flex items-center justify-center font-bold text-xs">JS</div>
+<div>
+<p class="text-sm font-bold text-primary">João Santos</p>
+<p class="text-xs text-on-surface-variant">joao.s@network.int</p>
+</div>
+</div>
+</td>
+<td class="px-8 py-6">
+<span class="bg-surface-container-high px-2 py-1 rounded text-xs font-mono font-medium text-primary tracking-tight">D4:12:43:FF:90:01</span>
+</td>
+<td class="px-8 py-6">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-sm text-outline" data-icon="schedule">schedule</span>
+<span class="text-sm text-on-surface font-medium">07h 00m 00s</span>
+</div>
+</td>
+<td class="px-8 py-6">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wide bg-secondary-container/20 text-secondary">Ativo</span>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="bg-surface-container-low/20 hover:bg-surface-container-low transition-colors">
+<td class="px-8 py-6">
+<div class="flex flex-col">
+<span class="text-sm font-semibold text-primary">23 Out, 2023</span>
+<span class="text-xs text-on-surface-variant">22:15:30</span>
+</div>
+</td>
+<td class="px-8 py-6">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-lg bg-error-container text-error flex items-center justify-center font-bold text-xs">BR</div>
+<div>
+<p class="text-sm font-bold text-primary">Bruno Rocha</p>
+<p class="text-xs text-on-surface-variant">bruno.r@network.int</p>
+</div>
+</div>
+</td>
+<td class="px-8 py-6">
+<span class="bg-surface-container-high px-2 py-1 rounded text-xs font-mono font-medium text-primary tracking-tight">F2:33:91:00:AA:BB</span>
+</td>
+<td class="px-8 py-6">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-sm text-outline" data-icon="schedule">schedule</span>
+<span class="text-sm text-on-surface font-medium">00h 15m 45s</span>
+</div>
+</td>
+<td class="px-8 py-6">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wide bg-green-100 text-green-700">Concluído</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination Shell -->
+<div class="px-8 py-5 bg-surface-container-low/30 border-t border-outline-variant/10 flex items-center justify-between">
+<p class="text-xs text-on-surface-variant font-medium">Mostrando <span class="text-primary font-bold">1-10</span> de <span class="text-primary font-bold">1.240</span> entradas</p>
+<div class="flex items-center gap-2">
+<button class="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-surface-container-high text-outline transition-colors disabled:opacity-30" disabled="">
+<span class="material-symbols-outlined" data-icon="chevron_left">chevron_left</span>
+</button>
+<button class="w-8 h-8 flex items-center justify-center rounded-lg bg-primary text-white font-bold text-xs">1</button>
+<button class="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-surface-container-high text-primary font-bold text-xs">2</button>
+<button class="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-surface-container-high text-primary font-bold text-xs">3</button>
+<span class="text-outline text-xs px-1">...</span>
+<button class="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-surface-container-high text-primary font-bold text-xs">124</button>
+<button class="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-surface-container-high text-outline transition-colors">
+<span class="material-symbols-outlined" data-icon="chevron_right">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Dashboard Analytics Inset -->
+<div class="mt-10 grid grid-cols-1 md:grid-cols-3 gap-8">
+<div class="bg-surface-container-low p-6 rounded-2xl flex items-center gap-5 border border-white">
+<div class="w-12 h-12 rounded-2xl bg-primary flex items-center justify-center text-white shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined" data-icon="show_chart">show_chart</span>
+</div>
+<div>
+<p class="text-[10px] font-bold text-on-surface-variant uppercase tracking-widest">Tempo Médio de Sessão</p>
+<h4 class="text-2xl font-black text-primary">03h 45m</h4>
+</div>
+</div>
+<div class="bg-surface-container-low p-6 rounded-2xl flex items-center gap-5 border border-white">
+<div class="w-12 h-12 rounded-2xl bg-secondary flex items-center justify-center text-white shadow-lg shadow-secondary/20">
+<span class="material-symbols-outlined" data-icon="groups">groups</span>
+</div>
+<div>
+<p class="text-[10px] font-bold text-on-surface-variant uppercase tracking-widest">Usuários Únicos (Mês)</p>
+<h4 class="text-2xl font-black text-primary">482</h4>
+</div>
+</div>
+<div class="bg-surface-container-low p-6 rounded-2xl flex items-center gap-5 border border-white">
+<div class="w-12 h-12 rounded-2xl bg-on-tertiary-fixed-variant flex items-center justify-center text-white shadow-lg shadow-tertiary/20">
+<span class="material-symbols-outlined" data-icon="dns">dns</span>
+</div>
+<div>
+<p class="text-[10px] font-bold text-on-surface-variant uppercase tracking-widest">Pico de Conexões</p>
+<h4 class="text-2xl font-black text-primary">89</h4>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>

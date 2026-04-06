@@ -1,0 +1,27 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+<div class="viposa-card p-8">
+    <h2 class="text-xl font-bold mb-6 text-[#9f4200]">Acesso Visitante</h2>
+    
+    <p class="text-sm text-gray-500 mb-6">Insira o código impresso no seu voucher ou escaneie o QR Code.</p>
+    
+    <form method="POST">
+        {% csrf_token %}
+        <input type="hidden" name="mac" value="{{ mac }}">
+        
+        <div class="mb-6">
+            <label class="block text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1">Código do Voucher</label>
+            <input type="text" name="code" value="{{ code }}" required class="w-full bg-[#f1f4fa] p-4 text-center text-2xl font-mono tracking-widest rounded-lg border-b-2 border-transparent focus:border-[#9f4200] outline-none transition uppercase" placeholder="XXXX-XXXX">
+        </div>
+        
+        <button type="submit" class="w-full bg-[#9f4200] text-white py-3 rounded-lg font-bold shadow-lg hover:opacity-90 transition">
+            CONECTAR
+        </button>
+    </form>
+    
+    <div class="mt-4 text-center">
+        <a href="{% url 'core:portal_index' %}?{{ request.GET.urlencode }}" class="text-xs text-gray-400 hover:text-[#9f4200] transition uppercase font-bold tracking-tighter">Voltar</a>
+    </div>
+</div>
+{% endblock %}

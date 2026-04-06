@@ -1,0 +1,30 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+<div class="viposa-card p-8">
+    <h2 class="text-xl font-bold mb-6 text-[#002c57]">Acesso Colaborador</h2>
+    
+    <form method="POST">
+        {% csrf_token %}
+        <input type="hidden" name="mac" value="{{ mac }}">
+        
+        <div class="mb-4">
+            <label class="block text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1">Usuário</label>
+            <input type="text" name="username" required class="w-full bg-[#f1f4fa] p-3 rounded-lg border-b-2 border-transparent focus:border-[#002c57] outline-none transition" placeholder="Matrícula ou Usuário">
+        </div>
+        
+        <div class="mb-6">
+            <label class="block text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1">Senha</label>
+            <input type="password" name="password" required class="w-full bg-[#f1f4fa] p-3 rounded-lg border-b-2 border-transparent focus:border-[#002c57] outline-none transition" placeholder="••••••••">
+        </div>
+        
+        <button type="submit" class="w-full btn-viposa py-3 rounded-lg font-bold shadow-lg">
+            AUTENTICAR
+        </button>
+    </form>
+    
+    <div class="mt-4 text-center">
+        <a href="{% url 'core:portal_index' %}?{{ request.GET.urlencode }}" class="text-xs text-gray-400 hover:text-[#002c57] transition uppercase font-bold tracking-tighter">Voltar</a>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800;900&amp;family=JetBrains+Mono:wght@700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary-fixed-variant": "#214779",
+                        "error-container": "#ffdad6",
+                        "on-tertiary-container": "#92b1ce",
+                        "on-secondary": "#ffffff",
+                        "surface": "#f7f9ff",
+                        "surface-dim": "#d7dae0",
+                        "surface-container-highest": "#dfe3e8",
+                        "on-tertiary": "#ffffff",
+                        "inverse-surface": "#2d3135",
+                        "on-surface-variant": "#43474f",
+                        "surface-variant": "#dfe3e8",
+                        "secondary-fixed-dim": "#ffb692",
+                        "primary": "#002c57",
+                        "on-primary-fixed": "#001c3b",
+                        "on-secondary-fixed-variant": "#793000",
+                        "on-error": "#ffffff",
+                        "on-primary-container": "#8cafe7",
+                        "surface-container": "#ebeef4",
+                        "surface-bright": "#f7f9ff",
+                        "secondary": "#9f4200",
+                        "on-background": "#181c20",
+                        "primary-container": "#1a4273",
+                        "on-surface": "#181c20",
+                        "surface-container-high": "#e5e8ee",
+                        "outline-variant": "#c3c6d0",
+                        "on-primary": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "surface-container-low": "#f1f4fa",
+                        "primary-fixed": "#d5e3ff",
+                        "inverse-primary": "#a7c8ff",
+                        "surface-container-lowest": "#ffffff",
+                        "tertiary-fixed-dim": "#abcae8",
+                        "secondary-fixed": "#ffdbcb",
+                        "error": "#ba1a1a",
+                        "on-secondary-container": "#642600",
+                        "surface-tint": "#3b5f92",
+                        "on-tertiary-fixed-variant": "#2b4963",
+                        "on-tertiary-fixed": "#001d31",
+                        "tertiary": "#0a2e46",
+                        "background": "#f7f9ff",
+                        "secondary-container": "#fd8039",
+                        "inverse-on-surface": "#eef1f7",
+                        "on-secondary-fixed": "#341100",
+                        "outline": "#737780",
+                        "tertiary-container": "#25445d",
+                        "primary-fixed-dim": "#a7c8ff",
+                        "tertiary-fixed": "#cce5ff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "fontFamily": {
+                        "headline": ["Inter"],
+                        "body": ["Inter"],
+                        "label": ["Inter"],
+                        "mono": ["JetBrains Mono"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            line-height: 1;
+            text-transform: none;
+            letter-spacing: normal;
+            word-wrap: normal;
+            white-space: nowrap;
+            direction: ltr;
+        }
+        @media print {
+            .no-print { display: none !important; }
+            body { background: white !important; }
+            .page-break { page-break-after: always; }
+        }
+    </style>
+</head>
+<body class="bg-surface-container-low font-body text-on-surface antialiased">
+<!-- Top Navigation Shell (The Anchor) -->
+<nav class="bg-white/80 backdrop-blur-md text-[#002c57] font-inter tracking-tight headline-sm font-bold docked full-width top-0 z-50 sticky shadow-[0_12px_32px_rgba(24,28,32,0.06)] flex justify-between items-center w-full px-8 py-3 no-print">
+<div class="flex items-center gap-4">
+<span class="text-xl font-black text-[#002c57]">Network Intelligence Vouchers</span>
+</div>
+<div class="flex items-center gap-6">
+<div class="hidden md:flex gap-6">
+<a class="text-[#181c20]/60" href="#">Dashboard</a>
+<a class="text-[#181c20]/60" href="#">Logs</a>
+<a class="text-[#002c57] border-b-2 border-[#002c57] pb-1" href="#">Vouchers</a>
+<a class="text-[#181c20]/60" href="#">Settings</a>
+</div>
+<div class="flex items-center gap-3 ml-4">
+<button class="material-symbols-outlined p-2 hover:bg-[#f1f4fa] rounded-full transition-all">print</button>
+<button class="material-symbols-outlined p-2 hover:bg-[#f1f4fa] rounded-full transition-all">account_circle</button>
+</div>
+</div>
+</nav>
+<!-- Floating Action Bar (Contextual) -->
+<div class="fixed bottom-8 left-1/2 -translate-x-1/2 z-50 flex items-center gap-3 px-6 py-4 bg-primary text-white rounded-full shadow-2xl no-print">
+<button class="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-primary to-primary-container hover:scale-105 transition-transform rounded-full">
+<span class="material-symbols-outlined">download</span>
+<span class="text-sm font-bold">Export PDF</span>
+</button>
+<div class="w-px h-6 bg-white/20"></div>
+<button class="flex items-center gap-2 px-4 py-2 hover:bg-white/10 rounded-full transition-colors" onclick="window.print()">
+<span class="material-symbols-outlined">print</span>
+<span class="text-sm font-bold">Imprimir</span>
+</button>
+</div>
+<!-- Main Content Canvas -->
+<main class="max-w-5xl mx-auto py-12 px-4 md:px-8">
+<!-- Document Header Area -->
+<header class="mb-12 flex justify-between items-end border-b border-outline-variant/30 pb-8 no-print">
+<div>
+<span class="text-label-sm uppercase tracking-widest text-on-surface-variant font-bold mb-2 block">Voucher Export</span>
+<h1 class="text-4xl font-black text-primary tracking-tighter">Preview de Impressão</h1>
+<p class="text-on-surface-variant mt-2">Lote: BATCH-NODE-A1-20231027 | 8 Vouchers gerados</p>
+</div>
+<div class="text-right">
+<img alt="Brand Logo" class="h-10 opacity-80" data-alt="clean minimalist corporate logo for a network intelligence company featuring geometric shapes in deep navy blue" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCK7DEChr4MwgkOAWojVAMr-plRQj8cZfikb1Z7mXYIEVq97-SIy17PFfiFHMMF1AwdEImkDhkSSpuFEEDqJpQnQdWjB0IEBU--GXs1pNbRbakAKF2gLhLGFY_kWkr1WMNbk2esFPv4nvrfBKZ0Tp-fLxWAFhvsa5l2ip6tlf4MceXHA9--ASvbscX8O3lWMKwDyPgQ4WZwfJewCI9A_wHrgPqU9aSvsNV0gkAtaa7bASrdmTwh28ywHcroqBcvz6z-Zce0E7mUMmY"/>
+</div>
+</header>
+<!-- A4 Page Container (White Paper Aesthetic) -->
+<div class="bg-white shadow-xl mx-auto p-10 min-h-[1123px] relative overflow-hidden ring-1 ring-outline-variant/10">
+<!-- Page Identity Subtle Overlay -->
+<div class="absolute top-4 right-6 opacity-20 no-print">
+<span class="text-[10px] font-mono uppercase tracking-tighter">NETWORK INTEL V.2.4 // NODE_A1_STABLE</span>
+</div>
+<!-- Grid of Vouchers (The Core Task) -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8 gap-y-12">
+<!-- Voucher Card 1 -->
+<div class="border-2 border-dashed border-outline-variant/50 p-6 flex flex-col items-center justify-between text-center bg-white relative">
+<img alt="Corner Logo" class="absolute top-2 left-2 h-4 opacity-30 grayscale" data-alt="minimalist corporate tech logo watermark in light grey" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBcu4nrto9PRQHkzlaO6gDDpwZzePuRP_pYEMGM5VSR10OtMGaiH8ViXHRL8j6DuZMcdliBXu0N7oloFeOrGKEUDM5x_fO6bo8xl20G7FWGcBs7P6fRHxuHL7x5Yr8jrgtGr69P9O8MLN-wb3eOqCqj8c9azNmOpFo6A9Gzwd_-cl9sG9P8oIXqJz8pxAGID1a9JpztSQh02mNBzCglC7ZJHgGsYONbwYYZq8uHn6Q0VQFgBmmJYp2WvDb7Fsf7zTWVKis-cFC5liA"/>
+<div class="w-full flex justify-center mb-4">
+<img alt="QR Code" class="w-40 h-40 border-4 border-white shadow-sm" data-alt="high contrast digital qr code with thick black modules on white background for easy scanning" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB6NDGwS4EGpnp2xsCjL9xT08tlBMEG4QbiRTK7vypVRu0nlgdA3o0WCIJutNueafMbanVA4evCvpKbbjZxih_n56PS467hMFsBT_yZQPoy2jzZohoTRu7BLpyKoO4KnXtY1dF50e1OX51AwxJwxb4oV_q3n-zSNhVnhV73CwB1Sn8CW-oxh4pyJv8XikD3wsd6nWekk43xNhPT7ZBE7MVEHQNXtuDaPg3pBWPgOuqwu332Y6DpIs1RxsZtaXLg4g0Ja7-Aeflq7cM"/>
+</div>
+<div class="space-y-1">
+<p class="text-label-sm font-bold text-on-surface-variant uppercase tracking-widest">Access Code</p>
+<h2 class="text-3xl font-mono font-bold text-primary tracking-tight">WIFI-9283-A2</h2>
+</div>
+<div class="mt-4 pt-4 border-t border-outline-variant/20 w-full">
+<p class="text-sm font-medium text-on-surface">Escaneie para acessar o Wi-Fi</p>
+<p class="text-xs text-secondary font-bold uppercase mt-1">Válido por 24 horas</p>
+</div>
+</div>
+<!-- Voucher Card 2 -->
+<div class="border-2 border-dashed border-outline-variant/50 p-6 flex flex-col items-center justify-between text-center bg-white relative">
+<img alt="Corner Logo" class="absolute top-2 left-2 h-4 opacity-30 grayscale" data-alt="minimalist corporate tech logo watermark in light grey" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB8McJofcwiPvlMs1IDLUqanP2o3-ba0jvI2YgZ8vYGQsO4wS7WzRy76BrYXJj8wjWvx0VLuiWvtGLiliIB5dpzsLD7h9HDbKoRfXVWFqq8A_aElcDUahC7qvlEzkFwdN0bSaGbN7uP56zwFDGWsqKPwpGM5ZTe0RKVBac0YYsz3n8kQLajLJJkXeOluo11kJkL9oOw_kOtbiAaZb5VGz6KJpdWPfGAAC7Ux1F46lFqUeGWsQBrdrXxBT5slesTZ61bEPKdOyYhbgg"/>
+<div class="w-full flex justify-center mb-4">
+<img alt="QR Code" class="w-40 h-40 border-4 border-white shadow-sm" data-alt="high contrast digital qr code for wifi connection" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAoHsHwrZ8gWlqdLCj6RcNtxkhPHwtxyJQvIr2innQS67jgRDdzSfAYL2nhlTTkj-n7hhD9KQphN44A1eGYYJTLzzxA68V27jnv_aA6lIHzbRaFn_0IBx9VlBehLY_jvvcxBl5fj2JCHWv7SAlKR9CoOblUpi3nfmJv7KOinTEl6cDauxvaDg9Dv4tbyILZiDpB7tJONIvMRHfcVlZSs2iJlQQdlyYH2rYtuTPZALItR3UaPmNHK6rccIjt5y_DopSYSHEq8GnoJuM"/>
+</div>
+<div class="space-y-1">
+<p class="text-label-sm font-bold text-on-surface-variant uppercase tracking-widest">Access Code</p>
+<h2 class="text-3xl font-mono font-bold text-primary tracking-tight">WIFI-7712-B9</h2>
+</div>
+<div class="mt-4 pt-4 border-t border-outline-variant/20 w-full">
+<p class="text-sm font-medium text-on-surface">Escaneie para acessar o Wi-Fi</p>
+<p class="text-xs text-secondary font-bold uppercase mt-1">Válido por 24 horas</p>
+</div>
+</div>
+<!-- Voucher Card 3 -->
+<div class="border-2 border-dashed border-outline-variant/50 p-6 flex flex-col items-center justify-between text-center bg-white relative">
+<img alt="Corner Logo" class="absolute top-2 left-2 h-4 opacity-30 grayscale" data-alt="minimalist corporate tech logo watermark in light grey" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDJHrNr1x0yuQUVEosBs56W2-hhMtXCycpa8FIhKNWz5NmacM8ry5B3oqRrpbLEeQYaw-JWcpFhlxQ31Mb4mnwQ9jnJx8ubxUBtL6cVps4im5JFkFGUNJXPWqAT5zg4xb5i-_bWMXcAGHpOh4fb8drlNdK_avNkcD6UmWrA456NMHHrA6EJ8dg53h_4Q7tWEhShm9EgLigAgLYpUlBc2EIrb9oGo7H8BGWFUSInYTOO3CRs43Iuv3oaMKq4nvyeQhxTqVYuL_UPmQ0"/>
+<div class="w-full flex justify-center mb-4">
+<img alt="QR Code" class="w-40 h-40 border-4 border-white shadow-sm" data-alt="high contrast digital qr code for wifi connection" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDRExp5T4606gWZABBP_EndJQV-haUmI-uLD58g62wXQXeJSkw0UiWyU2BXzDHlnl6EAqwSKY440990SNihgMSZ4bM3DjM38QfP9yhhKYhXDqXqinMY9gSn8zhVY0_Eg0ybmHWUWBC4afGN7VGjUStmgzrUrngFjmlN9lk_ZiyTeudXWO1wKNUQrH60lHSoiPAI79g9DlfK4_6txSwrABUrbGa9WjzIwTYSwg1TE9jQk1eT1tnB62xVeFDZKDD85Q-MTRbSEnBpbwU"/>
+</div>
+<div class="space-y-1">
+<p class="text-label-sm font-bold text-on-surface-variant uppercase tracking-widest">Access Code</p>
+<h2 class="text-3xl font-mono font-bold text-primary tracking-tight">WIFI-4501-C3</h2>
+</div>
+<div class="mt-4 pt-4 border-t border-outline-variant/20 w-full">
+<p class="text-sm font-medium text-on-surface">Escaneie para acessar o Wi-Fi</p>
+<p class="text-xs text-secondary font-bold uppercase mt-1">Válido por 24 horas</p>
+</div>
+</div>
+<!-- Voucher Card 4 -->
+<div class="border-2 border-dashed border-outline-variant/50 p-6 flex flex-col items-center justify-between text-center bg-white relative">
+<img alt="Corner Logo" class="absolute top-2 left-2 h-4 opacity-30 grayscale" data-alt="minimalist corporate tech logo watermark in light grey" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAdxe9SaIzDgZ7sEYWclrvJDMN8S6bEkgD8aFTT4Xy1hi1dv7PxCi2n_0ypesk7cJKUPi3t3q8tMMIqIKvW-KwE301F805an2thEocQtQaYi_46-3NyMDtWGzQLTZKexwPwEpw5FEA4qwPqhEXg496Fo0w18Ei6bSJSHlz65y8bidHxIYfdAab-VI8nxdJuzKLvQo_bD6bHCL8p64tq2lJfNnI7Utl2wFpziRZECpFyHlZ3W-X2S0NF4iN4lHv4XQ098beIrubaVlU"/>
+<div class="w-full flex justify-center mb-4">
+<img alt="QR Code" class="w-40 h-40 border-4 border-white shadow-sm" data-alt="high contrast digital qr code for wifi connection" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCD5zqYzzb9dQVJIqjwyg2vPyDeV5gZddgYxbXz8IGq5GR_2FZHVH011P9AjdepB6V-_GlylySRZHLUQ87OXpqqh_xmgCCRCKfYnbuk9gGeUKuUmfPBlEKdDisRMCWnGtKg8g7W4z22XRoguWlmWSrECbOG9YaabOI1LkUzcKZj2is51hpkQzSP66cTIXYkLJQ0qoY4miuX4BHUHTRYe1ldxPjfzQd6WlGeTYOYdvuA9I4qO7Pqsh-MXRBHDsJG76VZAXfC3vPs4JM"/>
+</div>
+<div class="space-y-1">
+<p class="text-label-sm font-bold text-on-surface-variant uppercase tracking-widest">Access Code</p>
+<h2 class="text-3xl font-mono font-bold text-primary tracking-tight">WIFI-1192-D4</h2>
+</div>
+<div class="mt-4 pt-4 border-t border-outline-variant/20 w-full">
+<p class="text-sm font-medium text-on-surface">Escaneie para acessar o Wi-Fi</p>
+<p class="text-xs text-secondary font-bold uppercase mt-1">Válido por 24 horas</p>
+</div>
+</div>
+<!-- Voucher Card 5 -->
+<div class="border-2 border-dashed border-outline-variant/50 p-6 flex flex-col items-center justify-between text-center bg-white relative">
+<img alt="Corner Logo" class="absolute top-2 left-2 h-4 opacity-30 grayscale" data-alt="minimalist corporate tech logo watermark in light grey" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD5UOHfBstXtbPqhoGaSvgBdtcALMMege9-XHN8lV0jBiKCltLvNFhZDqM71cJ5VPnorWA9uCe_-CNbl5mVZaR9lBQo60Q6RiEG0YacRWUP5_Wzx1sL30QTo-bT6oHbw_Mo9PS0ADx5f-CnIogpXt1DsItkNs7E-gqeBfmm-G5zwj8GZsnYqcXDfkFuTBIJEHJcRLE0n6hlBllvbkqJcxeeTB4NPrA04ab9iKcfubowscqmrubIpPk3PCEWc_nFzMDtXMM2IxbOUZ4"/>
+<div class="w-full flex justify-center mb-4">
+<img alt="QR Code" class="w-40 h-40 border-4 border-white shadow-sm" data-alt="high contrast digital qr code for wifi connection" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD5xf_ak2Rixg_6qjfeV7WSX1dVrXrlzgu18Jv0GoIQS-o7nFdZyyI0IcCKkt-GnIb0hV_eepNGVB7dyA5P7mdNPCa9injXHs6y7k_lcJm8FPriJWEfidPoQO8VAA78Z-ARdKHjokW6Mzx4lBUKM7zNEVjDbiHx3Q0rZCsFp9IMMhTUFvSa7tFogsU500K48vAKPiu5ptpRdR0uvI8qGK7NHl3U1O6GDsSavg0vmfxBLlgU1HmRk0uFvXY_CgVC5SKh53xL21zm_kk"/>
+</div>
+<div class="space-y-1">
+<p class="text-label-sm font-bold text-on-surface-variant uppercase tracking-widest">Access Code</p>
+<h2 class="text-3xl font-mono font-bold text-primary tracking-tight">WIFI-3384-E7</h2>
+</div>
+<div class="mt-4 pt-4 border-t border-outline-variant/20 w-full">
+<p class="text-sm font-medium text-on-surface">Escaneie para acessar o Wi-Fi</p>
+<p class="text-xs text-secondary font-bold uppercase mt-1">Válido por 24 horas</p>
+</div>
+</div>
+<!-- Voucher Card 6 -->
+<div class="border-2 border-dashed border-outline-variant/50 p-6 flex flex-col items-center justify-between text-center bg-white relative">
+<img alt="Corner Logo" class="absolute top-2 left-2 h-4 opacity-30 grayscale" data-alt="minimalist corporate tech logo watermark in light grey" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAbRc9OMnoYkgzCct7deqabmh5aJ5owdta4oTS63ioGlbwusBBypkELgj1EQ_f3SqYzNsl4dc6sdGuMjXd8CbCLQq0JAGLpCfTBFyGRrsGdI-H1P6HF2EM5A12iFtpX78TYBC_hz74Inkgp6pmPhP4U1_DBCUPWJ7sd62wqWTjfa2dWFNciL0Ba9S-6kO_Ee8F9BEcam_mnSWsNpQlmxVp7a3s0DSKjBvKlzMYOCjVl8zEtSJUo_r-9GYfII-YmWlMs2ivaLWJjIbQ"/>
+<div class="w-full flex justify-center mb-4">
+<img alt="QR Code" class="w-40 h-40 border-4 border-white shadow-sm" data-alt="high contrast digital qr code for wifi connection" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAtDl-diQtaY3jFt6yjw0zgwV5oqKOIaqWUwgyizqdCCYL06_g25R_POEkOb5ZWMC4ZHYHwyxqYaWZAKLjd6OtrdtzTF1vsT3bB-2V5kuBZatgsTmF9dwBEopGeqFC-LXnmU48HpMnLoVhNvPsTDH3ippgxRPlbpry1AcToc0zl5gRBHOQ4PuV3a8u6DBao94DAQVQZVIanB54zuJXRa5ZKB-YjHmGSWzcX6qXSqixFbVQf5QZ3AHK8Cd1Di106WAVSQh9ViE5mEvs"/>
+</div>
+<div class="space-y-1">
+<p class="text-label-sm font-bold text-on-surface-variant uppercase tracking-widest">Access Code</p>
+<h2 class="text-3xl font-mono font-bold text-primary tracking-tight">WIFI-6621-F1</h2>
+</div>
+<div class="mt-4 pt-4 border-t border-outline-variant/20 w-full">
+<p class="text-sm font-medium text-on-surface">Escaneie para acessar o Wi-Fi</p>
+<p class="text-xs text-secondary font-bold uppercase mt-1">Válido por 24 horas</p>
+</div>
+</div>
+<!-- Voucher Card 7 -->
+<div class="border-2 border-dashed border-outline-variant/50 p-6 flex flex-col items-center justify-between text-center bg-white relative">
+<img alt="Corner Logo" class="absolute top-2 left-2 h-4 opacity-30 grayscale" data-alt="minimalist corporate tech logo watermark in light grey" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDUSxum5W5LkEFBP439Y3fZt-J_i_BHLN6L22GBXoaML3G0FV-xd1ZEGi7jpMaJVjG4LXxOoUJvDEFczvYu2YZ3k6QO--Oe_A3pXgZBxeJI7FF2VYO-j4K_VEqrT7Vncpwg2Q0CfeRK5cP1Nh5qoStNMQI2LVvasoLviXJTjx_sHEENwnUZsvRmHDnDtEHh-HUWoHLaTlNFq1CXG-7gGYlXSOFRVlIk8ZhnuWbOP4guEJREtTpfDJY-uPhXCHMCxY67OCDkAplJQbI"/>
+<div class="w-full flex justify-center mb-4">
+<img alt="QR Code" class="w-40 h-40 border-4 border-white shadow-sm" data-alt="high contrast digital qr code for wifi connection" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCGBUxpXdYU6fCZDPufffHkuKRCRMH0nIK4Y0sIStAmFnSTlNHQdWbBRtvqL4B6pRViDD_ufXjihyktFnzES-RkjvOLQ0spgfeNCW-bv_7aBQ7T-vbT2ww22gbfnJX323bC0emVn27d8WfVwaLAzyZR7EAO7JgzhDPDZI_pNL82UMbT6h2ktKbaeZglBlUUkMgO5VRVtqDKd1E_tTNNffoO1iXK3sS5kG4OaIhyHn0G08-9oirN9IBB01It1-iTNMVeVO2tAVQJ650"/>
+</div>
+<div class="space-y-1">
+<p class="text-label-sm font-bold text-on-surface-variant uppercase tracking-widest">Access Code</p>
+<h2 class="text-3xl font-mono font-bold text-primary tracking-tight">WIFI-8800-G5</h2>
+</div>
+<div class="mt-4 pt-4 border-t border-outline-variant/20 w-full">
+<p class="text-sm font-medium text-on-surface">Escaneie para acessar o Wi-Fi</p>
+<p class="text-xs text-secondary font-bold uppercase mt-1">Válido por 24 horas</p>
+</div>
+</div>
+<!-- Voucher Card 8 -->
+<div class="border-2 border-dashed border-outline-variant/50 p-6 flex flex-col items-center justify-between text-center bg-white relative">
+<img alt="Corner Logo" class="absolute top-2 left-2 h-4 opacity-30 grayscale" data-alt="minimalist corporate tech logo watermark in light grey" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDUxq2o3y2kH1oH16T4zplAyWmMzETC3hZhgR8IW2oASM2-Oco4ItPU3WHVXIyxoisquBopaXMP4giRadkG5LLXUiIOqU_UHOKFkB39GVssJkXnvjsiaRfPXamEa5z_doQpG7tB2pjJ9bitX6q0EFgFLKsXCUFjxukz4oT81wBvTdun2MRWxan7ZwMUAobYvrbf0Xx5bwgPMezpSbCnvpAj3O0nFApa-Vu-1su3fC7S2jG58orzNBt3BROtRUT2zRN2QG_34nInSf0"/>
+<div class="w-full flex justify-center mb-4">
+<img alt="QR Code" class="w-40 h-40 border-4 border-white shadow-sm" data-alt="high contrast digital qr code for wifi connection" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAKFU5YJHZMP3_PURMp_l-nMOAwJEpbjgWTvDU4nMguDGnkgwoW5ymJMkpZZ85gRNiicZT93yfIbLOeTkxw8_pNWgBUbEp9yiGqbq3txf7GQCtpTxMfgbSMNaAOftlH3iQoECuk8xnM1wB61G6saIX7tgjdyWO0PEP6ICnjPYYknnIpyCFeZrkQ_yFdoDjLl-f4w0KObrJou5TqGEbCojLnuPSNdXn2HaxUQzeJt231jMDTD_QlLX4ypmqauMylOeo3p9nwZjmX40c"/>
+</div>
+<div class="space-y-1">
+<p class="text-label-sm font-bold text-on-surface-variant uppercase tracking-widest">Access Code</p>
+<h2 class="text-3xl font-mono font-bold text-primary tracking-tight">WIFI-5542-H0</h2>
+</div>
+<div class="mt-4 pt-4 border-t border-outline-variant/20 w-full">
+<p class="text-sm font-medium text-on-surface">Escaneie para acessar o Wi-Fi</p>
+<p class="text-xs text-secondary font-bold uppercase mt-1">Válido por 24 horas</p>
+</div>
+</div>
+</div>
+<!-- Footer for Printed Page -->
+<footer class="absolute bottom-10 left-10 right-10 flex justify-between items-center text-[10px] text-on-surface-variant/40 font-medium">
+<p>© Network Intelligence Vouchers - Security Protocol A1</p>
+<p>Gerado em: 27 de Outubro de 2023 | Pág 1 de 1</p>
+</footer>
+</div>
+<!-- Sidebar (Asymmetric Layout Hint) -->
+<aside class="mt-12 p-8 bg-surface-container-highest/30 rounded-xl border border-outline-variant/20 no-print">
+<h3 class="text-primary font-bold mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined">info</span>
+                Instruções de Impressão
+            </h3>
+<div class="grid md:grid-cols-3 gap-6">
+<div class="flex gap-3">
+<div class="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+<span class="text-primary text-xs font-bold">1</span>
+</div>
+<p class="text-sm text-on-surface-variant">Use papel sulfite A4 branco para garantir o contraste do QR Code.</p>
+</div>
+<div class="flex gap-3">
+<div class="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+<span class="text-primary text-xs font-bold">2</span>
+</div>
+<p class="text-sm text-on-surface-variant">Configure a escala de impressão para 100% para manter as dimensões.</p>
+</div>
+<div class="flex gap-3">
+<div class="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+<span class="text-primary text-xs font-bold">3</span>
+</div>
+<p class="text-sm text-on-surface-variant">Corte nas linhas pontilhadas para obter vouchers individuais.</p>
+</div>
+</div>
+</aside>
+</main>
+</body></html>

@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+
+<html class="light" lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Network Portal - Acesso de Visitante</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-tertiary": "#ffffff",
+                    "on-secondary": "#ffffff",
+                    "error": "#ba1a1a",
+                    "on-tertiary-fixed-variant": "#2b4963",
+                    "inverse-on-surface": "#eef1f7",
+                    "surface-container": "#ebeef4",
+                    "on-secondary-fixed": "#341100",
+                    "on-secondary-fixed-variant": "#793000",
+                    "background": "#f7f9ff",
+                    "inverse-primary": "#a7c8ff",
+                    "surface-container-low": "#f1f4fa",
+                    "error-container": "#ffdad6",
+                    "tertiary": "#0a2e46",
+                    "secondary-fixed-dim": "#ffb692",
+                    "on-surface-variant": "#43474f",
+                    "primary-fixed": "#d5e3ff",
+                    "outline": "#737780",
+                    "surface": "#f7f9ff",
+                    "surface-tint": "#3b5f92",
+                    "primary-container": "#1a4273",
+                    "on-primary": "#ffffff",
+                    "surface-bright": "#f7f9ff",
+                    "surface-variant": "#dfe3e8",
+                    "secondary-container": "#fd8039",
+                    "tertiary-container": "#25445d",
+                    "secondary": "#9f4200",
+                    "tertiary-fixed-dim": "#abcae8",
+                    "primary": "#002c57",
+                    "on-tertiary-fixed": "#001d31",
+                    "inverse-surface": "#2d3135",
+                    "primary-fixed-dim": "#a7c8ff",
+                    "on-background": "#181c20",
+                    "tertiary-fixed": "#cce5ff",
+                    "on-primary-fixed-variant": "#214779",
+                    "on-surface": "#181c20",
+                    "on-secondary-container": "#642600",
+                    "secondary-fixed": "#ffdbcb",
+                    "on-primary-fixed": "#001c3b",
+                    "surface-dim": "#d7dae0",
+                    "surface-container-lowest": "#ffffff",
+                    "on-error": "#ffffff",
+                    "surface-container-high": "#e5e8ee",
+                    "outline-variant": "#c3c6d0",
+                    "surface-container-highest": "#dfe3e8",
+                    "on-primary-container": "#8cafe7",
+                    "on-error-container": "#93000a",
+                    "on-tertiary-container": "#92b1ce"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "fontFamily": {
+                    "headline": ["Inter"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .network-gradient {
+            background: linear-gradient(135deg, #002c57 0%, #1a4273 100%);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-surface text-on-background min-h-screen flex flex-col items-center">
+<!-- Top Bar Component -->
+<header class="fixed top-0 w-full z-50 bg-[#f7f9ff] dark:bg-slate-950 flex items-center justify-between px-6 py-4 w-full">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[#002c57] dark:text-blue-400" data-icon="lan">lan</span>
+<span class="text-lg font-bold tracking-tighter text-[#002c57] dark:text-blue-200">Network Portal</span>
+</div>
+<div class="md:flex hidden gap-6">
+<span class="text-[#002c57] dark:text-blue-300 font-bold font-['Inter'] tracking-tight headline-lg cursor-pointer">Conectar</span>
+<span class="text-slate-500 dark:text-slate-400 hover:opacity-80 transition-opacity cursor-pointer">Status</span>
+<span class="text-slate-500 dark:text-slate-400 hover:opacity-80 transition-opacity cursor-pointer">Suporte</span>
+</div>
+</header>
+<main class="w-full max-w-md mt-24 px-6 flex-grow flex flex-col items-center">
+<!-- Logo Section -->
+<div class="mb-10 text-center">
+<div class="w-24 h-24 mx-auto mb-4 bg-primary rounded-full flex items-center justify-center overflow-hidden shadow-lg">
+<img alt="Viposa Logo" class="w-16 h-16 object-contain" data-alt="Modern geometric corporate logo for a technology and network infrastructure company with deep navy blue colors and clean lines" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAfqqF8onI9CxByBpnJ681hVCezeMluUVbO720ygAfCm_gMEniiUtfnx7hl0TIQND0enx0e6K270CnTai4CwIaNgkX-R0QeZe_DnFY_jG6tiwS9XCei8ncAXtYWRBoJ_29q9eRyzJMjttPAqJ6yI9lT_iYbtBfdKxlph5Tv9BHBm2DMnzhSB-ZNzKc5bNMfFkOWFUu3OmqrEj6aDvzu1IuhvR1GKEO6tu5NK645zK_p0qF36L_5ewO7DPiZ1ef9gRKII--F1QmoJVE"/>
+</div>
+<h1 class="text-primary font-headline font-extrabold text-3xl tracking-tighter uppercase">Conectar à Rede</h1>
+<p class="text-on-surface-variant text-sm mt-2 opacity-80">Portal de Acesso para Visitantes</p>
+</div>
+<!-- Main Action Card -->
+<div class="w-full bg-surface-container-lowest p-8 rounded-xl shadow-[0_12px_32px_rgba(24,28,32,0.06)] flex flex-col gap-6 border border-outline-variant/15">
+<div class="flex flex-col gap-2">
+<label class="text-[0.6875rem] font-bold tracking-widest text-on-surface-variant uppercase ml-1">Código de Acesso</label>
+<div class="relative">
+<input class="w-full bg-surface-container-highest border-b-2 border-primary text-primary font-mono font-bold py-4 px-4 text-lg rounded-t-lg focus:outline-none cursor-not-allowed" readonly="" type="text" value="VP-882-QX-2024"/>
+<span class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 text-outline" data-icon="lock">lock</span>
+</div>
+</div>
+<div class="flex flex-col gap-4">
+<button class="network-gradient text-white font-bold py-5 rounded-lg w-full flex items-center justify-center gap-2 active:scale-[0.98] transition-transform shadow-md">
+<span class="material-symbols-outlined" data-icon="wifi_tethering">wifi_tethering</span>
+                    CONECTAR
+                </button>
+<p class="text-center text-xs text-on-surface-variant/70 italic px-4">
+                    Sua conexão será validada automaticamente após o clique.
+                </p>
+</div>
+<!-- Status Messaging Area (Stack of possible states for visualization) -->
+<div class="mt-4 flex flex-col gap-3">
+<!-- Success State -->
+<div class="flex items-center gap-3 p-4 bg-emerald-50 rounded-lg border-l-4 border-emerald-600 shadow-sm">
+<div class="bg-emerald-200 p-2 rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined text-emerald-800 text-sm" data-icon="check_circle" data-weight="fill" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<div>
+<p class="text-xs font-bold text-emerald-900">Acesso Liberado!</p>
+<p class="text-[11px] text-emerald-800 font-medium">Você já pode navegar na rede Viposa.</p>
+</div>
+</div>
+<!-- Warning State (Visualized per requirement) -->
+<div class="flex items-center gap-3 p-4 bg-amber-50 rounded-lg border-l-4 border-amber-600 shadow-sm">
+<div class="bg-amber-200 p-2 rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined text-amber-800 text-sm" data-icon="devices" data-weight="fill" style="font-variation-settings: 'FILL' 1;">devices</span>
+</div>
+<div>
+<p class="text-xs font-bold text-amber-950">Dispositivo Vinculado</p>
+<p class="text-[11px] text-amber-900 font-medium">Este código já está em uso por outro aparelho.</p>
+</div>
+</div>
+<!-- Error State -->
+<div class="flex items-center gap-3 p-4 bg-red-50 rounded-lg border-l-4 border-red-600 shadow-sm">
+<div class="bg-red-200 p-2 rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined text-red-800 text-sm" data-icon="timer_off" data-weight="fill" style="font-variation-settings: 'FILL' 1;">timer_off</span>
+</div>
+<div>
+<p class="text-xs font-bold text-red-950">Voucher Expirado</p>
+<p class="text-[11px] text-red-900 font-medium">Por favor, solicite um novo código na recepção.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Secondary Info -->
+<div class="mt-8 grid grid-cols-2 gap-4 w-full">
+<div class="bg-surface-container-low p-4 rounded-xl flex flex-col gap-1 items-center justify-center text-center">
+<span class="material-symbols-outlined text-primary-container text-xl" data-icon="speed">speed</span>
+<span class="text-[10px] font-bold text-outline-variant uppercase">Velocidade</span>
+<span class="text-xs font-medium text-on-surface">500 Mbps</span>
+</div>
+<div class="bg-surface-container-low p-4 rounded-xl flex flex-col gap-1 items-center justify-center text-center">
+<span class="material-symbols-outlined text-primary-container text-xl" data-icon="update">update</span>
+<span class="text-[10px] font-bold text-outline-variant uppercase">Duração</span>
+<span class="text-xs font-medium text-on-surface">08 Horas</span>
+</div>
+</div>
+</main>
+<!-- Support Link Footer -->
+<footer class="mt-auto py-8 text-center px-6">
+<a class="inline-flex items-center gap-2 text-primary text-sm font-medium hover:underline" href="#">
+<span class="material-symbols-outlined text-lg" data-icon="help_outline">help_outline</span>
+            Precisa de ajuda com o acesso?
+        </a>
+</footer>
+<!-- Bottom Navigation Component (Mobile Only) -->
+<nav class="md:hidden fixed bottom-0 w-full z-50 bg-[#f7f9ff]/80 dark:bg-slate-950/80 backdrop-blur-md border-t border-[#c3c6d0]/15 flex justify-around items-center h-16 w-full px-4 shadow-[0_-4px_12px_rgba(24,28,32,0.04)]">
+<div class="flex flex-col items-center gap-1 text-[#9f4200] dark:text-orange-400 active:scale-90 transition-transform cursor-pointer">
+<span class="material-symbols-outlined" data-icon="wifi_tethering">wifi_tethering</span>
+<span class="font-['Inter'] text-[11px] font-medium tracking-wide uppercase">Connect</span>
+</div>
+<div class="flex flex-col items-center gap-1 text-slate-500 dark:text-slate-400 active:scale-90 transition-transform cursor-pointer hover:text-[#002c57] dark:hover:text-blue-300">
+<span class="material-symbols-outlined" data-icon="info">info</span>
+<span class="font-['Inter'] text-[11px] font-medium tracking-wide uppercase">Status</span>
+</div>
+<div class="flex flex-col items-center gap-1 text-slate-500 dark:text-slate-400 active:scale-90 transition-transform cursor-pointer hover:text-[#002c57] dark:hover:text-blue-300">
+<span class="material-symbols-outlined" data-icon="contact_support">contact_support</span>
+<span class="font-['Inter'] text-[11px] font-medium tracking-wide uppercase">Support</span>
+</div>
+</nav>
+</body></html>

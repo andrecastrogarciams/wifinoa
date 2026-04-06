@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Viposa Wi-Fi Intelligence{% endblock %}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        :root {
+            --primary: #002c57;
+            --secondary: #9f4200;
+            --surface: #f7f9ff;
+            --surface-low: #f1f4fa;
+            --surface-lowest: #ffffff;
+        }
+        body {
+            background-color: var(--surface);
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            color: #181c20;
+        }
+        .viposa-card {
+            background: var(--surface-lowest);
+            border-radius: 1rem;
+            box-shadow: 0 12px 32px rgba(24, 28, 32, 0.06);
+            transition: transform 0.2s ease;
+        }
+        .btn-viposa {
+            background: linear-gradient(to bottom right, #002c57, #1a4273);
+            color: white;
+            transition: all 0.2s;
+        }
+        .btn-viposa:hover {
+            opacity: 0.9;
+            transform: translateY(-1px);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col items-center justify-center p-4">
+    <div class="w-full max-w-md">
+        <!-- Logo -->
+        <div class="text-center mb-8">
+            <h1 class="text-3xl font-bold tracking-tight text-[#002c57]">VIPOSA</h1>
+            <p class="text-sm text-gray-500 font-medium uppercase tracking-widest mt-1">The Orchestrated Core</p>
+        </div>
+
+        {% if messages %}
+        <div class="mb-4 space-y-2">
+            {% for message in messages %}
+            <div class="p-3 rounded-md text-sm {% if message.tags == 'error' %}bg-red-50 text-red-700{% else %}bg-green-50 text-green-700{% endif %}">
+                {{ message }}
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        {% block content %}{% endblock %}
+
+        <!-- Footer -->
+        <div class="text-center mt-8 text-[10px] text-gray-400 uppercase tracking-widest">
+            Network Intelligence Hub &copy; 2026 Viposa S.A.
+        </div>
+    </div>
+</body>
+</html>

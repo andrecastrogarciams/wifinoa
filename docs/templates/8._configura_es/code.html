@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary": "#0a2e46",
+                        "on-secondary": "#ffffff",
+                        "on-secondary-container": "#642600",
+                        "primary-container": "#1a4273",
+                        "tertiary-fixed-dim": "#abcae8",
+                        "on-tertiary-fixed": "#001d31",
+                        "background": "#f7f9ff",
+                        "error-container": "#ffdad6",
+                        "primary": "#002c57",
+                        "on-secondary-fixed-variant": "#793000",
+                        "on-primary-container": "#8cafe7",
+                        "on-tertiary-fixed-variant": "#2b4963",
+                        "secondary-fixed-dim": "#ffb692",
+                        "primary-fixed-dim": "#a7c8ff",
+                        "inverse-primary": "#a7c8ff",
+                        "outline": "#737780",
+                        "surface-dim": "#d7dae0",
+                        "surface-container-high": "#e5e8ee",
+                        "surface-bright": "#f7f9ff",
+                        "on-background": "#181c20",
+                        "error": "#ba1a1a",
+                        "tertiary-fixed": "#cce5ff",
+                        "on-tertiary-container": "#92b1ce",
+                        "outline-variant": "#c3c6d0",
+                        "on-error": "#ffffff",
+                        "on-tertiary": "#ffffff",
+                        "surface-container": "#ebeef4",
+                        "on-error-container": "#93000a",
+                        "surface-container-low": "#f1f4fa",
+                        "on-primary": "#ffffff",
+                        "inverse-on-surface": "#eef1f7",
+                        "tertiary-container": "#25445d",
+                        "surface": "#f7f9ff",
+                        "secondary-container": "#fd8039",
+                        "on-surface-variant": "#43474f",
+                        "on-secondary-fixed": "#341100",
+                        "surface-container-lowest": "#ffffff",
+                        "on-primary-fixed-variant": "#214779",
+                        "inverse-surface": "#2d3135",
+                        "surface-tint": "#3b5f92",
+                        "secondary-fixed": "#ffdbcb",
+                        "on-primary-fixed": "#001c3b",
+                        "surface-container-highest": "#dfe3e8",
+                        "surface-variant": "#dfe3e8",
+                        "secondary": "#9f4200",
+                        "on-surface": "#181c20",
+                        "primary-fixed": "#d5e3ff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "fontFamily": {
+                        "headline": ["Inter"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .custom-scrollbar::-webkit-scrollbar { width: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #c3c6d0; border-radius: 10px; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface flex min-h-screen overflow-hidden">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl flex justify-between items-center h-14 px-6 border-b border-slate-200 dark:border-slate-800 shadow-sm dark:shadow-none">
+<div class="flex items-center gap-4">
+<span class="text-lg font-black tracking-tighter text-blue-950 dark:text-white">Network Intelligence</span>
+<div class="h-6 w-px bg-slate-200 mx-2"></div>
+<nav class="flex gap-6 text-sm font-inter tracking-tight font-medium">
+<a class="text-slate-500 hover:bg-slate-50 transition-colors" href="#">Dashboard</a>
+<a class="text-slate-500 hover:bg-slate-50 transition-colors" href="#">Monitoring</a>
+<a class="text-blue-900 dark:text-blue-300 font-bold border-b-2 border-blue-900 h-14 flex items-center" href="#">Settings</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative group">
+<span class="material-symbols-outlined text-slate-500 cursor-pointer">notifications</span>
+<span class="absolute top-0 right-0 w-2 h-2 bg-secondary rounded-full"></span>
+</div>
+<span class="material-symbols-outlined text-slate-500 cursor-pointer">help</span>
+<div class="h-8 w-8 rounded-full overflow-hidden border border-slate-200">
+<img alt="Current User Avatar" data-alt="professional male headshot with neutral background, corporate style lighting, sharp focus" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDgDsxOLziDHuL8Cy6tBAdP_AljfJlwnN2Z1Vsx1cO4J6E2bXJzj4U0qRnm2FNT19b8U7A8fyCv6kVdakecCOspfcuUiY_NeOVrnDWuOSR2vIytWc3CytvbBbcCbR_3YGCCK2FK7ontTQBzohUxjgF5Ma2LzZlXgl8GDlrFPu5psq729KqsrET-mfqxakN1VNcUljt1gLU2yd9GUmZPgb8tuC3_MIVl_aS_J29UmYIHnaFsI2RHbKGYLV5snvw4mCm_87tAxTAUNdM"/>
+</div>
+<button class="text-sm font-medium text-slate-600 hover:text-primary transition-colors">Logout</button>
+</div>
+</header>
+<!-- SideNavBar -->
+<aside class="fixed left-0 top-14 h-[calc(100vh-3.5rem)] w-64 bg-slate-50 dark:bg-slate-950 flex flex-col p-4 space-y-2 border-r border-slate-200 dark:border-slate-800 z-40">
+<div class="mb-6 px-2">
+<h2 class="text-xs font-bold text-slate-400 uppercase tracking-widest">Admin Console</h2>
+<p class="text-[10px] text-slate-500">Network Ops</p>
+</div>
+<nav class="flex-grow space-y-1">
+<a class="flex items-center gap-3 px-3 py-2 text-slate-600 hover:bg-slate-200/50 transition-all duration-200 rounded-md" href="#">
+<span class="material-symbols-outlined text-[20px]">dashboard</span>
+<span class="text-sm font-medium">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-slate-600 hover:bg-slate-200/50 transition-all duration-200 rounded-md" href="#">
+<span class="material-symbols-outlined text-[20px]">group</span>
+<span class="text-sm font-medium">Collaborators</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-slate-600 hover:bg-slate-200/50 transition-all duration-200 rounded-md" href="#">
+<span class="material-symbols-outlined text-[20px]">confirmation_number</span>
+<span class="text-sm font-medium">Vouchers</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-slate-600 hover:bg-slate-200/50 transition-all duration-200 rounded-md" href="#">
+<span class="material-symbols-outlined text-[20px]">sensors</span>
+<span class="text-sm font-medium">Active Sessions</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-slate-600 hover:bg-slate-200/50 transition-all duration-200 rounded-md" href="#">
+<span class="material-symbols-outlined text-[20px]">assessment</span>
+<span class="text-sm font-medium">Reports</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 bg-white dark:bg-slate-900 text-blue-900 dark:text-blue-400 shadow-sm rounded-md transition-all duration-200" href="#">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">settings</span>
+<span class="text-sm font-bold">Settings</span>
+</a>
+</nav>
+<div class="pt-4 border-t border-slate-200 dark:border-slate-800 space-y-1">
+<a class="flex items-center gap-3 px-3 py-2 text-slate-600 hover:bg-slate-200/50 transition-all duration-200 rounded-md" href="#">
+<span class="material-symbols-outlined text-[20px]">contact_support</span>
+<span class="text-sm font-medium">Support</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-slate-600 hover:bg-slate-200/50 transition-all duration-200 rounded-md" href="#">
+<span class="material-symbols-outlined text-[20px]">analytics</span>
+<span class="text-sm font-medium">System Status</span>
+</a>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="ml-64 mt-14 flex-grow bg-surface-container-low p-8 h-[calc(100vh-3.5rem)] overflow-y-auto custom-scrollbar">
+<header class="flex justify-between items-end mb-8">
+<div>
+<h1 class="text-2xl font-bold tracking-tight text-on-surface">Configurações do Sistema</h1>
+<p class="text-sm text-on-surface-variant">Defina as políticas globais de acesso, segurança e parâmetros de rede.</p>
+</div>
+<div class="flex gap-3">
+<button class="px-4 py-2 text-sm font-bold text-primary hover:bg-surface-container-high rounded transition-colors">Descartar</button>
+<button class="bg-gradient-to-r from-primary to-primary-container text-white px-6 py-2 rounded-md text-sm font-bold shadow-md active:scale-95 transition-all">Salvar Alterações</button>
+</div>
+</header>
+<div class="grid grid-cols-12 gap-6">
+<!-- 1. Políticas de Voucher (Bento Grid Item) -->
+<section class="col-span-12 lg:col-span-7 bg-surface-container-lowest p-6 rounded-xl shadow-sm border border-outline-variant/15">
+<div class="flex items-center gap-2 mb-6">
+<span class="material-symbols-outlined text-primary">confirmation_number</span>
+<h3 class="title-md font-bold text-on-surface">Políticas de Voucher</h3>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<div class="space-y-4">
+<div>
+<label class="block text-[11px] font-bold text-on-surface-variant uppercase tracking-wider mb-2 flex items-center gap-1">
+                                Tempo Padrão de Voucher
+                                <span class="material-symbols-outlined text-[14px] cursor-help text-outline" title="Duração padrão de validade após o primeiro uso.">info</span>
+</label>
+<div class="flex">
+<input class="flex-grow bg-surface-container-highest border-none border-b-2 border-transparent focus:border-primary focus:ring-0 text-sm py-2 px-3 rounded-l" type="number" value="24"/>
+<select class="bg-surface-container-highest border-none border-b-2 border-transparent focus:border-primary focus:ring-0 text-sm py-2 px-3 rounded-r border-l border-outline-variant/20">
+<option>Horas</option>
+<option>Dias</option>
+<option>Minutos</option>
+</select>
+</div>
+</div>
+<div class="pt-2">
+<label class="block text-[11px] font-bold text-on-surface-variant uppercase tracking-wider mb-2 flex items-center gap-1">
+                                Limites de Sessão
+                                <span class="material-symbols-outlined text-[14px] cursor-help text-outline" title="Número máximo de dispositivos que podem usar o mesmo voucher simultaneamente.">info</span>
+</label>
+<input class="w-full h-1.5 bg-surface-container-high rounded-lg appearance-none cursor-pointer accent-primary" max="10" min="1" type="range" value="2"/>
+<div class="flex justify-between text-[10px] font-bold text-outline mt-1">
+<span>1 DISPOSITIVO</span>
+<span>5</span>
+<span>10+ DISPOSITIVOS</span>
+</div>
+</div>
+</div>
+<div class="bg-surface-container-low p-4 rounded-lg flex flex-col justify-center border border-outline-variant/10">
+<p class="text-[10px] font-bold text-primary mb-2 uppercase tracking-tighter">Resumo da Política</p>
+<p class="text-xs text-on-surface-variant leading-relaxed">
+                            Vouchers gerados terão validade de <span class="font-bold text-on-surface">24 horas</span> e permitirão até <span class="font-bold text-on-surface">2 conexões</span> simultâneas por padrão. 
+                        </p>
+<div class="mt-4 flex items-center gap-2 text-secondary">
+<span class="material-symbols-outlined text-[18px]">bolt</span>
+<span class="text-[11px] font-bold">Configuração Otimizada para Visitantes</span>
+</div>
+</div>
+</div>
+</section>
+<!-- 2. Segurança e Retenção (Bento Grid Item) -->
+<section class="col-span-12 lg:col-span-5 bg-surface-container-lowest p-6 rounded-xl shadow-sm border border-outline-variant/15 flex flex-col">
+<div class="flex items-center gap-2 mb-6">
+<span class="material-symbols-outlined text-primary">security</span>
+<h3 class="title-md font-bold text-on-surface">Segurança e Retenção</h3>
+</div>
+<div class="space-y-6 flex-grow">
+<div>
+<label class="block text-[11px] font-bold text-on-surface-variant uppercase tracking-wider mb-2 flex items-center gap-1">
+                            Retenção de Logs (Dias)
+                            <span class="material-symbols-outlined text-[14px] cursor-help text-outline" title="Período em que os logs de acesso serão mantidos no banco de dados.">info</span>
+</label>
+<input class="w-full bg-surface-container-highest border-none border-b-2 border-transparent focus:border-primary focus:ring-0 text-sm py-2 px-3 rounded" type="number" value="90"/>
+</div>
+<div class="space-y-4">
+<div class="flex justify-between items-center">
+<span class="text-xs font-medium text-on-surface">Complexidade de Senha</span>
+<div class="flex items-center gap-1">
+<span class="text-[10px] font-bold text-secondary-container px-2 py-0.5 bg-secondary-fixed-dim rounded">ALTA</span>
+<input checked="" class="w-4 h-4 text-primary bg-surface-container-high border-none rounded focus:ring-primary" type="checkbox"/>
+</div>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-xs font-medium text-on-surface">Timeout de Inatividade (min)</span>
+<input class="w-20 text-right bg-surface-container-highest border-none border-b-2 border-transparent focus:border-primary focus:ring-0 text-xs py-1 px-2 rounded" type="number" value="15"/>
+</div>
+</div>
+</div>
+<div class="mt-8 p-3 bg-error-container/20 rounded border-l-4 border-error flex gap-3">
+<span class="material-symbols-outlined text-error text-[20px]">warning</span>
+<p class="text-[10px] text-on-error-container leading-tight">
+                        Logs removidos após o período de retenção não podem ser recuperados. Certifique-se de configurar backups externos.
+                    </p>
+</div>
+</section>
+<!-- 3. Configurações de Rede (Full Width Bento Item) -->
+<section class="col-span-12 bg-surface-container-lowest p-6 rounded-xl shadow-sm border border-outline-variant/15">
+<div class="flex justify-between items-center mb-6">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">lan</span>
+<h3 class="title-md font-bold text-on-surface">Configurações de Rede (Radius/CoA)</h3>
+</div>
+<button class="text-[11px] font-bold text-primary flex items-center gap-1 hover:underline">
+<span class="material-symbols-outlined text-[16px]">add_circle</span>
+                        ADICIONAR SERVIDOR
+                    </button>
+</div>
+<div class="overflow-hidden border border-outline-variant/10 rounded-lg">
+<table class="w-full text-left border-collapse">
+<thead class="bg-surface-container-low">
+<tr>
+<th class="px-4 py-3 text-[11px] font-bold text-on-surface-variant uppercase tracking-wider">Identificador</th>
+<th class="px-4 py-3 text-[11px] font-bold text-on-surface-variant uppercase tracking-wider">Endereço IP</th>
+<th class="px-4 py-3 text-[11px] font-bold text-on-surface-variant uppercase tracking-wider">Porta</th>
+<th class="px-4 py-3 text-[11px] font-bold text-on-surface-variant uppercase tracking-wider">Status</th>
+<th class="px-4 py-3 text-[11px] font-bold text-on-surface-variant uppercase tracking-wider">Último Heartbeat</th>
+<th class="px-4 py-3 text-right"></th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/5">
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="px-4 py-4">
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 bg-secondary rounded-full shadow-[0_0_8px_#fd8039]"></div>
+<span class="text-xs font-bold font-mono bg-surface-container-high px-2 py-0.5 rounded text-primary">RADIUS-PRI-01</span>
+</div>
+</td>
+<td class="px-4 py-4 text-xs font-mono text-on-surface-variant">10.0.45.201</td>
+<td class="px-4 py-4 text-xs font-mono text-on-surface-variant">1812</td>
+<td class="px-4 py-4">
+<span class="inline-flex items-center gap-1 text-[10px] font-bold text-green-600 bg-green-50 px-2 py-1 rounded">
+<span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                                        CONECTADO
+                                    </span>
+</td>
+<td class="px-4 py-4 text-[11px] text-on-surface-variant">Há 14 segundos</td>
+<td class="px-4 py-4 text-right">
+<span class="material-symbols-outlined text-outline cursor-pointer hover:text-primary">settings_ethernet</span>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="px-4 py-4">
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 bg-secondary rounded-full shadow-[0_0_8px_#fd8039]"></div>
+<span class="text-xs font-bold font-mono bg-surface-container-high px-2 py-0.5 rounded text-primary">RADIUS-SEC-02</span>
+</div>
+</td>
+<td class="px-4 py-4 text-xs font-mono text-on-surface-variant">10.0.45.202</td>
+<td class="px-4 py-4 text-xs font-mono text-on-surface-variant">1812</td>
+<td class="px-4 py-4">
+<span class="inline-flex items-center gap-1 text-[10px] font-bold text-green-600 bg-green-50 px-2 py-1 rounded">
+<span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                                        CONECTADO
+                                    </span>
+</td>
+<td class="px-4 py-4 text-[11px] text-on-surface-variant">Há 2 minutos</td>
+<td class="px-4 py-4 text-right">
+<span class="material-symbols-outlined text-outline cursor-pointer hover:text-primary">settings_ethernet</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<!-- Operational Insights (Utility) -->
+<section class="col-span-12 lg:col-span-12 grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="bg-primary text-white p-6 rounded-xl relative overflow-hidden group">
+<div class="relative z-10">
+<p class="text-[11px] font-bold opacity-70 uppercase tracking-widest mb-1">Carga do Radius</p>
+<h4 class="text-3xl font-black mb-4">12%</h4>
+<div class="w-full bg-white/20 h-1 rounded-full overflow-hidden">
+<div class="bg-secondary w-[12%] h-full"></div>
+</div>
+</div>
+<span class="material-symbols-outlined absolute -bottom-4 -right-4 text-white/5 text-8xl">speed</span>
+</div>
+<div class="bg-surface-container-lowest p-6 rounded-xl border border-outline-variant/15 flex flex-col justify-center">
+<p class="text-[11px] font-bold text-on-surface-variant uppercase tracking-widest mb-2">Backups Automáticos</p>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-green-500">cloud_done</span>
+<div>
+<p class="text-sm font-bold text-on-surface">Configurações Sincronizadas</p>
+<p class="text-[11px] text-on-surface-variant">Sincronização em nuvem ativa</p>
+</div>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-6 rounded-xl border border-outline-variant/15 flex items-center justify-between">
+<div>
+<p class="text-[11px] font-bold text-on-surface-variant uppercase tracking-widest mb-1">Versão do Sistema</p>
+<p class="text-sm font-black text-primary">V 4.8.2-STABLE</p>
+</div>
+<button class="text-xs font-bold text-secondary border border-secondary px-3 py-1.5 rounded hover:bg-secondary/5 transition-colors">VER LOG DE ALTERAÇÕES</button>
+</div>
+</section>
+</div>
+<!-- Sticky Mobile Footer (if needed) -->
+<div class="md:hidden mt-8 sticky bottom-0 p-4 bg-white shadow-2xl rounded-t-xl">
+<button class="w-full bg-primary text-white py-3 rounded-lg font-bold">SALVAR ALTERAÇÕES</button>
+</div>
+</main>
+</body></html>

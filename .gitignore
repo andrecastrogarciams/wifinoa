@@ -1,0 +1,58 @@
+# ---------------------------------------------------------
+# Python & Django .gitignore
+# ---------------------------------------------------------
+
+# Environment
+venv/
+.env
+.venv/
+env/
+ENV/
+*.env
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Django
+db.sqlite3
+db.sqlite3-journal
+media/
+static_root/
+staticfiles/
+
+# Logs
+*.log
+local_settings.py
+
+# OS / IDE
+.vscode/
+.idea/
+.DS_Store
+*.swp
+*.swo
+
+# Project Docs
+docs/epics/*.md
+docs/stories/*.md
+!docs/epics/README.md
+!docs/stories/README.md

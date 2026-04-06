@@ -1,0 +1,21 @@
+# ============================================
+# Viposa Wi-Fi Project Requirements
+# ============================================
+
+# Core
+Django>=4.2,<5.0
+python-dotenv>=1.0.0
+
+# Database
+mysqlclient>=2.2.0
+
+# Features (Vouchers & QR Codes)
+qrcode[pil]>=7.4.2
+reportlab>=4.0.0
+
+# Network (RADIUS CoA)
+pyrad>=2.4
+
+# Monitoring/Diagnostics (Optional but recommended)
+django-debug-toolbar>=4.0.0
+django-extensions>=3.2.0
