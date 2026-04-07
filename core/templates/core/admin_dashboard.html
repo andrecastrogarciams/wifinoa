@@ -171,6 +171,19 @@
 
                     <!-- Sidebar Info -->
                     <div class="space-y-6">
+                        <div class="bg-surface-container-lowest p-6 rounded-xl shadow-sm border border-outline-variant/10">
+                            <h3 class="text-sm font-black text-primary tracking-tight mb-4 flex items-center">
+                                <span class="material-symbols-outlined mr-2 text-lg">devices</span> Dispositivos
+                            </h3>
+                            <div class="relative h-48 w-full">
+                                <canvas id="deviceChart"></canvas>
+                            </div>
+                            <div class="mt-4 flex justify-between text-[0.65rem] font-bold text-on-surface-variant uppercase tracking-widest">
+                                <span>Mobile: {{ metrics.device_stats.data.0 }}</span>
+                                <span>Desktop: {{ metrics.device_stats.data.1 }}</span>
+                            </div>
+                        </div>
+
                         <div class="bg-primary p-6 rounded-xl shadow-xl text-white relative overflow-hidden">
                             <h3 class="text-sm font-black tracking-tight mb-2">Suporte de Rede</h3>
                             <p class="text-xs text-white/70 leading-relaxed">Em caso de falha na autenticação CoA ou RADIUS, verifique os logs de sistema.</p>
@@ -203,6 +216,35 @@
                 responsive: true,
                 plugins: { legend: { display: false } },
                 scales: { y: { beginAtZero: true }, x: { grid: { display: false } } }
+            }
+        });
+
+        const deviceCtx = document.getElementById('deviceChart').getContext('2d');
+        new Chart(deviceCtx, {
+            type: 'doughnut',
+            data: {
+                labels: {{ metrics.device_stats.labels|safe }},
+                datasets: [{
+                    data: {{ metrics.device_stats.data|safe }},
+                    backgroundColor: ['#fd8039', '#002c57'],
+                    borderWidth: 0,
+                    hoverOffset: 4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            usePointStyle: true,
+                            padding: 20,
+                            font: { size: 10, weight: 'bold' }
+                        }
+                    }
+                },
+                cutout: '70%'
             }
         });
     </script>

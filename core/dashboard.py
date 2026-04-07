@@ -39,7 +39,26 @@ def get_dashboard_metrics():
     metrics['graph_labels'] = graph_labels
     metrics['graph_data'] = graph_data
 
-    # 3. Últimos Acessos (Tabela)
+    # 3. Distribuição de Dispositivos (Story 4.1)
+    # Classificação simples baseada em palavras-chave no User-Agent
+    device_mappings = UserMacMapping.objects.exclude(device_info__isnull=True).values_list('device_info', flat=True)
+    mobile_count = 0
+    desktop_count = 0
+    
+    mobile_keywords = ['Mobile', 'Android', 'iPhone', 'iPad', 'Windows Phone']
+    
+    for info in device_mappings:
+        if any(keyword in info for keyword in mobile_keywords):
+            mobile_count += 1
+        else:
+            desktop_count += 1
+            
+    metrics['device_stats'] = {
+        'labels': ['Mobile', 'Desktop'],
+        'data': [mobile_count, desktop_count]
+    }
+
+    # 4. Últimos Acessos (Tabela)
     # Pegamos os últimos registros de accounting
     latest_accesses = RadAcct.objects.all().order_by('-acctstarttime')[:5]
     metrics['latest_accesses'] = latest_accesses

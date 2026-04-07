@@ -24,14 +24,20 @@ class LoginColaboradorView(View):
         
         if user is not None:
             # 2. Verificação de MAC (Story 1.1 / Story 3.1)
+            user_agent = request.META.get('HTTP_USER_AGENT', 'Unknown')
             mapping, created = UserMacMapping.objects.get_or_create(
                 user=user,
-                defaults={'mac_address': mac}
+                defaults={'mac_address': mac, 'device_info': user_agent}
             )
 
             if not created and mapping.mac_address != mac:
                 messages.error(request, "Este usuário já está vinculado a outro dispositivo.")
                 return render(request, 'core/login_colaborador.html', {'mac': mac})
+            
+            # Se já existe o mapping mas o device_info está vazio, vamos atualizar
+            if not created and not mapping.device_info:
+                mapping.device_info = user_agent
+                mapping.save()
 
             # 3. Auditoria de Acesso (Story 4.2)
             AuditLog.objects.create(
