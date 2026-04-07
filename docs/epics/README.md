@@ -18,6 +18,7 @@ O projeto Wi-Fi Viposa foi desenvolvido com sucesso, substituindo o portal nativ
 ### 2. Painel de Gestão (Interface Customizada)
 - [x] **Dashboard:** KPIs em tempo real, gráfico interativo de acessos (Chart.js) e tabela de eventos recentes.
 - [x] **Gráfico de Dispositivos (US-4.1):** Implementada a segmentação "Mobile vs Desktop" usando captura de User-Agent.
+- [x] **Central de Auditoria Customizada:** Criada página de relatórios (`/gestao/relatorios/`) com filtros avançados e exportação CSV.
 - [x] **Gestão de Colaboradores:** Listagem completa e modal lateral funcional para Criação de Colaboradores.
 - [x] **Gestão de Vouchers:** Listagem com checkbox em lote, modal lateral para Geração de Lotes e exportação para PDF (QR Codes).
 - [x] **Sessões Ativas:** Visualização em tempo real via tabela de accounting (`radacct`) com botão de Desconexão Remota (CoA via `pyrad`).
@@ -32,12 +33,9 @@ O projeto Wi-Fi Viposa foi desenvolvido com sucesso, substituindo o portal nativ
 
 As seguintes tarefas estão no Backlog prontas para serem desenvolvidas na próxima sessão:
 
-1. **Central de Auditoria Customizada:**
-   - Criar a página de Relatórios (`/gestao/relatorios/`) baseada no design `7._relat_rios`.
-   - Incluir filtros avançados para a tabela `AuditLog` e exportação CSV.
-2. **Auto-Purge (Manutenção de Banco):**
+1. **Auto-Purge (Manutenção de Banco):**
    - Criar um `Management Command` do Django (ex: `python manage.py purge_vouchers`) para limpar vouchers expirados há mais de 30 dias.
-3. **Ambiente de Produção:**
+2. **Ambiente de Produção:**
    - Configurar variáveis de ambiente (`.env`) para conectar o Django ao MySQL real de produção do FreeRADIUS.
 
 ---

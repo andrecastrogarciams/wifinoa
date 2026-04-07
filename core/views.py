@@ -224,3 +224,92 @@ class AdminSessoesView(View):
         sessoes = ActiveSession.objects.all().order_by('-acctstarttime')
         
         return render(request, 'core/admin_sessoes.html', {'sessoes': sessoes})
+
+class AdminRelatoriosView(View):
+    def get(self, request):
+        if not request.user.is_authenticated or not request.user.is_staff:
+            return redirect('core:admin_login')
+        
+        from .models import AuditLog
+        from django.db.models import Q
+        
+        query = request.GET.get('q', '')
+        action_type = request.GET.get('type', '')
+        date_from = request.GET.get('from', '')
+        date_to = request.GET.get('to', '')
+        
+        logs = AuditLog.objects.all()
+        
+        if query:
+            logs = logs.filter(
+                Q(target_object__icontains=query) | 
+                Q(details__icontains=query) |
+                Q(admin__username__icontains=query)
+            )
+            
+        if action_type:
+            logs = logs.filter(action_type=action_type)
+            
+        if date_from:
+            logs = logs.filter(timestamp__date__gte=date_from)
+            
+        if date_to:
+            logs = logs.filter(timestamp__date__lte=date_to)
+            
+        # Tipos de ação para o filtro
+        action_types = AuditLog.objects.values_list('action_type', flat=True).distinct()
+        
+        return render(request, 'core/admin_relatorios.html', {
+            'logs': logs[:500], # Limite para performance
+            'action_types': action_types,
+            'filters': {
+                'q': query,
+                'type': action_type,
+                'from': date_from,
+                'to': date_to
+            }
+        })
+
+class AdminRelatoriosExportView(View):
+    def get(self, request):
+        if not request.user.is_authenticated or not request.user.is_staff:
+            return redirect('core:admin_login')
+            
+        import csv
+        from django.http import HttpResponse
+        from .models import AuditLog
+        
+        logs = AuditLog.objects.all().order_by('-timestamp')
+        
+        # Aplicar mesmos filtros da view de listagem
+        query = request.GET.get('q', '')
+        action_type = request.GET.get('type', '')
+        date_from = request.GET.get('from', '')
+        date_to = request.GET.get('to', '')
+        
+        if query:
+            from django.db.models import Q
+            logs = logs.filter(Q(target_object__icontains=query) | Q(details__icontains=query) | Q(admin__username__icontains=query))
+        if action_type:
+            logs = logs.filter(action_type=action_type)
+        if date_from:
+            logs = logs.filter(timestamp__date__gte=date_from)
+        if date_to:
+            logs = logs.filter(timestamp__date__lte=date_to)
+
+        response = HttpResponse(content_type='text/csv')
+        response['Content-Disposition'] = f'attachment; filename="audit_log_{timezone.now().strftime("%Y%m%d_%H%M%S")}.csv"'
+        
+        writer = csv.writer(response)
+        writer.writerow(['Data/Hora', 'Admin', 'Ação', 'Alvo', 'Detalhes'])
+        
+        for log in logs:
+            writer.writerow([
+                log.timestamp.strftime("%Y-%m-%d %H:%M:%S"),
+                log.admin.username if log.admin else "Sistema",
+                log.action_type,
+                log.target_object,
+                log.details
+            ])
+            
+        return response

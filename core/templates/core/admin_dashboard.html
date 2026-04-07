@@ -57,8 +57,11 @@
                     <a class="flex items-center px-4 py-2.5 text-slate-600 hover:bg-[#f1f4fa] transition-all font-medium text-[0.875rem]" href="#">
                         <span class="material-symbols-outlined mr-3 text-[20px]">confirmation_number</span> Vouchers
                     </a>
-                    <a class="flex items-center px-4 py-2.5 text-slate-600 hover:bg-[#f1f4fa] transition-all font-medium text-[0.875rem]" href="#">
+                    <a class="flex items-center px-4 py-2.5 text-slate-600 hover:bg-[#f1f4fa] transition-all font-medium text-[0.875rem]" href="{% url 'core:admin_sessoes' %}">
                         <span class="material-symbols-outlined mr-3 text-[20px]">sensors</span> Sessões Ativas
+                    </a>
+                    <a class="flex items-center px-4 py-2.5 text-slate-600 hover:bg-[#f1f4fa] transition-all font-medium text-[0.875rem]" href="{% url 'core:admin_relatorios' %}">
+                        <span class="material-symbols-outlined mr-3 text-[20px]">description</span> Relatórios
                     </a>
                 </nav>
             </div>

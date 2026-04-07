@@ -67,6 +67,10 @@
                     <span class="material-symbols-outlined text-[20px]">sensors</span>
                     <span class="text-[0.875rem] font-medium">Sessões Ativas</span>
                 </a>
+                <a class="flex items-center gap-3 px-3 py-2 {% if request.resolver_match.url_name == 'admin_relatorios' %}bg-primary text-white shadow-lg{% else %}text-slate-600 hover:bg-[#f1f4fa]{% endif %} rounded-md transition-all" href="{% url 'core:admin_relatorios' %}">
+                    <span class="material-symbols-outlined text-[20px]">description</span>
+                    <span class="text-[0.875rem] font-medium">Relatórios</span>
+                </a>
             </nav>
             <div class="pt-4 mt-4 border-t border-outline-variant/15">
                 <a href="/admin/" class="w-full py-3 px-4 bg-slate-100 text-slate-600 rounded-md font-bold text-xs flex items-center justify-center gap-2 hover:bg-slate-200 transition-all">

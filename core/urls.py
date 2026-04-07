@@ -17,4 +17,6 @@ urlpatterns = [
     path('gestao/vouchers/', views.AdminVouchersView.as_view(), name='admin_vouchers'),
     path('gestao/vouchers/gerar/', views.AdminVoucherBatchCreateView.as_view(), name='admin_voucher_batch_create'),
     path('gestao/sessoes/', views.AdminSessoesView.as_view(), name='admin_sessoes'),
+    path('gestao/relatorios/', views.AdminRelatoriosView.as_view(), name='admin_relatorios'),
+    path('gestao/relatorios/exportar/', views.AdminRelatoriosExportView.as_view(), name='admin_relatorios_export'),
 ]

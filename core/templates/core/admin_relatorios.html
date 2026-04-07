@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html class="light" lang="pt-BR">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Relatórios | Network Intelligence</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                "primary": "#002c57",
+                "primary-container": "#1a4273",
+                "secondary": "#9f4200",
+                "secondary-container": "#fd8039",
+                "surface": "#f7f9ff",
+                "on-surface": "#181c20",
+                "on-surface-variant": "#43474f",
+                "outline-variant": "#c3c6d0",
+                "surface-container-low": "#f1f4fa",
+                "surface-container-lowest": "#ffffff",
+                "tertiary-fixed": "#cce5ff",
+                "primary-fixed": "#d5e3ff",
+                "secondary-fixed": "#ffdbcb"
+            }
+          },
+        }
+      }
+    </script>
+    <style>
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface">
+    <div class="flex h-screen overflow-hidden">
+        <!-- SideNavBar (Reutilizado) -->
+        <aside class="hidden md:flex flex-col h-screen w-64 border-r border-[#c3c6d0]/15 bg-[#f7f9ff]/85 backdrop-blur-xl z-50">
+            <div class="p-6">
+                <div class="flex items-center space-x-3 mb-8">
+                    <div class="w-10 h-10 rounded-lg bg-primary flex items-center justify-center text-white font-bold text-xl">NI</div>
+                    <div>
+                        <p class="text-primary font-bold tracking-tight text-sm">Viposa Admin</p>
+                        <p class="text-on-surface-variant text-[0.6875rem] uppercase tracking-widest font-semibold">IT Operations</p>
+                    </div>
+                </div>
+                <nav class="space-y-1">
+                    <a class="flex items-center px-4 py-2.5 text-slate-600 hover:bg-[#f1f4fa] transition-all font-medium text-[0.875rem]" href="{% url 'core:admin_dashboard' %}">
+                        <span class="material-symbols-outlined mr-3 text-[20px]">dashboard</span> Dashboard
+                    </a>
+                    <a class="flex items-center px-4 py-2.5 text-slate-600 hover:bg-[#f1f4fa] transition-all font-medium text-[0.875rem]" href="{% url 'core:admin_colaboradores' %}">
+                        <span class="material-symbols-outlined mr-3 text-[20px]">group</span> Colaboradores
+                    </a>
+                    <a class="flex items-center px-4 py-2.5 text-slate-600 hover:bg-[#f1f4fa] transition-all font-medium text-[0.875rem]" href="{% url 'core:admin_vouchers' %}">
+                        <span class="material-symbols-outlined mr-3 text-[20px]">confirmation_number</span> Vouchers
+                    </a>
+                    <a class="flex items-center px-4 py-2.5 text-slate-600 hover:bg-[#f1f4fa] transition-all font-medium text-[0.875rem]" href="{% url 'core:admin_sessoes' %}">
+                        <span class="material-symbols-outlined mr-3 text-[20px]">sensors</span> Sessões Ativas
+                    </a>
+                    <a class="flex items-center px-4 py-2.5 bg-primary text-white rounded-md shadow-lg font-medium text-[0.875rem]" href="{% url 'core:admin_relatorios' %}">
+                        <span class="material-symbols-outlined mr-3 text-[20px]">description</span> Relatórios
+                    </a>
+                </nav>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="flex-1 overflow-y-auto bg-surface-container-low">
+            <header class="sticky top-0 z-40 flex justify-between items-center w-full px-8 h-16 bg-[#f7f9ff] border-b border-[#c3c6d0]/15">
+                <h1 class="text-xl font-black text-primary tracking-tighter">Central de Auditoria</h1>
+                <div class="flex items-center gap-4">
+                    <a href="{% url 'core:admin_relatorios_export' %}?q={{ filters.q }}&type={{ filters.type }}&from={{ filters.from }}&to={{ filters.to }}" class="flex items-center px-4 py-2 bg-secondary text-white rounded-lg shadow-md font-bold text-sm hover:bg-secondary-container transition-all">
+                        <span class="material-symbols-outlined mr-2 text-[18px]">download</span> Exportar CSV
+                    </a>
+                </div>
+            </header>
+
+            <div class="p-8 max-w-[1600px] mx-auto">
+                <!-- Filtros -->
+                <div class="bg-surface-container-lowest p-6 rounded-xl shadow-sm mb-8">
+                    <form method="GET" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 items-end">
+                        <div class="lg:col-span-2">
+                            <label class="block text-[0.6875rem] uppercase font-black text-on-surface-variant mb-2">Busca (Alvo, Detalhes, Admin)</label>
+                            <input type="text" name="q" value="{{ filters.q }}" placeholder="Ex: João, Voucher A1B2..." class="w-full bg-surface-container-low border-none rounded-lg text-sm focus:ring-2 focus:ring-primary/20">
+                        </div>
+                        <div>
+                            <label class="block text-[0.6875rem] uppercase font-black text-on-surface-variant mb-2">Tipo de Ação</label>
+                            <select name="type" class="w-full bg-surface-container-low border-none rounded-lg text-sm focus:ring-2 focus:ring-primary/20">
+                                <option value="">Todos</option>
+                                {% for type in action_types %}
+                                <option value="{{ type }}" {% if filters.type == type %}selected{% endif %}>{{ type }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-[0.6875rem] uppercase font-black text-on-surface-variant mb-2">De:</label>
+                            <input type="date" name="from" value="{{ filters.from }}" class="w-full bg-surface-container-low border-none rounded-lg text-sm focus:ring-2 focus:ring-primary/20">
+                        </div>
+                        <div>
+                            <label class="block text-[0.6875rem] uppercase font-black text-on-surface-variant mb-2">Até:</label>
+                            <input type="date" name="to" value="{{ filters.to }}" class="w-full bg-surface-container-low border-none rounded-lg text-sm focus:ring-2 focus:ring-primary/20">
+                        </div>
+                        <div class="lg:col-span-5 flex justify-end gap-3 mt-4">
+                            <a href="{% url 'core:admin_relatorios' %}" class="px-6 py-2 text-primary font-bold text-sm hover:underline">Limpar</a>
+                            <button type="submit" class="px-8 py-2 bg-primary text-white rounded-lg font-bold text-sm shadow-lg hover:bg-primary-container transition-all">Filtrar</button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Tabela de Auditoria -->
+                <div class="bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden">
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse">
+                            <thead>
+                                <tr class="bg-surface-container-low/50">
+                                    <th class="px-6 py-4 text-[0.6875rem] uppercase font-bold text-on-surface-variant">Data / Hora</th>
+                                    <th class="px-6 py-4 text-[0.6875rem] uppercase font-bold text-on-surface-variant">Admin / Autor</th>
+                                    <th class="px-6 py-4 text-[0.6875rem] uppercase font-bold text-on-surface-variant">Ação</th>
+                                    <th class="px-6 py-4 text-[0.6875rem] uppercase font-bold text-on-surface-variant">Objeto Alvo</th>
+                                    <th class="px-6 py-4 text-[0.6875rem] uppercase font-bold text-on-surface-variant">Detalhes</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-outline-variant/10">
+                                {% for log in logs %}
+                                <tr class="hover:bg-surface-container-low/30 transition-colors">
+                                    <td class="px-6 py-4 text-xs font-mono text-primary font-bold">
+                                        {{ log.timestamp|date:"d/m/Y H:i:s" }}
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        <div class="flex items-center gap-2">
+                                            <div class="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold text-[10px]">
+                                                {{ log.admin.username|default:"SYS"|slice:":2"|upper }}
+                                            </div>
+                                            <p class="text-sm font-bold text-on-surface">{{ log.admin.username|default:"Sistema" }}</p>
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        <span class="px-2 py-1 bg-primary-fixed text-primary text-[0.65rem] font-black rounded uppercase tracking-tighter">
+                                            {{ log.action_type }}
+                                        </span>
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        <p class="text-xs font-bold text-on-surface">{{ log.target_object }}</p>
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        <p class="text-[0.7rem] text-on-surface-variant leading-relaxed opacity-80">{{ log.details|truncatechars:100 }}</p>
+                                    </td>
+                                </tr>
+                                {% empty %}
+                                <tr><td colspan="5" class="p-12 text-center text-gray-400 text-sm italic">Nenhum registro de auditoria encontrado para os filtros selecionados.</td></tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>
