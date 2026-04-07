@@ -1,0 +1,200 @@
+{% extends 'core/gestao_base.html' %}
+
+{% block title %}Vouchers | Network Intelligence{% endblock %}
+
+{% block content %}
+<!-- Page Header -->
+<div class="flex justify-between items-end mb-8">
+    <div>
+        <h2 class="text-3xl font-bold tracking-tight text-primary">Vouchers</h2>
+        <p class="text-on-surface-variant font-medium mt-1">Gerencie acessos temporários para visitantes.</p>
+    </div>
+    <div class="flex gap-3">
+        <form action="/admin/core/voucher/" method="GET" class="inline">
+            <button type="submit" class="px-5 py-2.5 bg-surface-container-lowest text-primary border border-outline-variant/30 rounded-md font-semibold text-sm hover:bg-surface-container-high transition-colors flex items-center gap-2">
+                <span class="material-symbols-outlined text-[20px]">settings</span>
+                Geração Avançada
+            </button>
+        </form>
+        <button onclick="document.getElementById('side-modal-voucher').classList.remove('translate-x-full')" class="px-5 py-2.5 bg-gradient-to-r from-secondary to-secondary-container text-white rounded-md font-bold text-sm shadow-lg hover:shadow-secondary/20 active:scale-95 transition-all flex items-center gap-2">
+            <span class="material-symbols-outlined text-[20px]">confirmation_number</span>
+            Gerar Vouchers
+        </button>
+    </div>
+</div>
+
+<!-- Bento Statistics -->
+<div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+    <div class="md:col-span-1 bg-surface-container-lowest p-6 rounded-xl editorial-shadow border border-outline-variant/10">
+        <span class="text-[0.6875rem] font-bold text-outline uppercase tracking-widest block mb-2">Vouchers Ativos</span>
+        <div class="flex items-baseline gap-2">
+            <span class="text-4xl font-black text-primary tracking-tighter">{{ vouchers.count }}</span>
+        </div>
+    </div>
+    <div class="md:col-span-3 bg-secondary p-6 rounded-xl editorial-shadow relative overflow-hidden text-white">
+        <div class="relative z-10">
+            <span class="text-[0.6875rem] font-bold opacity-70 uppercase tracking-widest block mb-2">Impressão de Lote</span>
+            <p class="font-medium text-lg text-white">Selecione os vouchers abaixo para gerar o PDF com QR Codes.</p>
+        </div>
+        <div class="absolute right-0 top-0 h-full w-1/3 opacity-10">
+            <span class="material-symbols-outlined text-[120px] -mr-8 -mt-4 text-white">print</span>
+        </div>
+    </div>
+</div>
+
+<!-- Main Data Table -->
+<div class="bg-surface-container-lowest rounded-xl editorial-shadow overflow-hidden border border-outline-variant/10">
+    <form id="voucher-action-form" method="POST" action="/admin/core/voucher/">
+        {% csrf_token %}
+        <div class="overflow-x-auto">
+            <table class="w-full text-left border-collapse">
+                <thead>
+                    <tr class="bg-surface-container-low/50">
+                        <th class="px-6 py-4 w-10">
+                            <input type="checkbox" id="select-all" class="rounded text-primary focus:ring-primary">
+                        </th>
+                        <th class="px-6 py-4 text-[0.6875rem] font-bold text-on-surface-variant uppercase tracking-widest">Código</th>
+                        <th class="px-6 py-4 text-[0.6875rem] font-bold text-on-surface-variant uppercase tracking-widest">Status</th>
+                        <th class="px-6 py-4 text-[0.6875rem] font-bold text-on-surface-variant uppercase tracking-widest">Expiração</th>
+                        <th class="px-6 py-4 text-[0.6875rem] font-bold text-on-surface-variant uppercase tracking-widest">MAC Utilizado</th>
+                        <th class="px-6 py-4 text-[0.6875rem] font-bold text-on-surface-variant uppercase tracking-widest text-right">Ações</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-outline-variant/5">
+                    {% for voucher in vouchers %}
+                    <tr class="hover:bg-surface-container-low/30 transition-colors group">
+                        <td class="px-6 py-4">
+                            <input type="checkbox" name="_selected_action" value="{{ voucher.pk }}" class="voucher-checkbox rounded text-primary focus:ring-primary">
+                        </td>
+                        <td class="px-6 py-4">
+                            <span class="text-sm font-bold text-primary font-mono tracking-wider">{{ voucher.code }}</span>
+                        </td>
+                        <td class="px-6 py-4">
+                            {% if voucher.status == 'active' %}
+                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-green-100 text-green-800">Ativo</span>
+                            {% elif voucher.status == 'revoked' %}
+                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-red-100 text-red-800">Revogado</span>
+                            {% elif voucher.status == 'used' %}
+                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-blue-100 text-blue-800">Utilizado</span>
+                            {% else %}
+                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-gray-100 text-gray-800">Expirado</span>
+                            {% endif %}
+                        </td>
+                        <td class="px-6 py-4 text-sm text-on-surface-variant">
+                            {{ voucher.expires_at|date:"d/m/Y H:i" }}
+                        </td>
+                        <td class="px-6 py-4">
+                            {% if voucher.mac_address %}
+                                <span class="bg-surface-container-high px-2 py-1 rounded text-[11px] font-mono font-bold text-primary">{{ voucher.mac_address }}</span>
+                            {% else %}
+                                <span class="text-xs text-outline italic">Pendente</span>
+                            {% endif %}
+                        </td>
+                        <td class="px-6 py-4 text-right">
+                            <div class="flex justify-end gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                                <button type="button" class="p-2 hover:bg-surface-container-high rounded text-primary transition-colors" title="Ver QR Code"><span class="material-symbols-outlined text-lg">qr_code_2</span></button>
+                                <button type="button" class="p-2 hover:bg-error-container rounded text-error transition-colors" title="Revogar"><span class="material-symbols-outlined text-lg">block</span></button>
+                            </div>
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr><td colspan="6" class="p-12 text-center text-gray-400 italic">Nenhum voucher gerado.</td></tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        
+        <!-- Batch Actions Footer (Floating) -->
+        <div id="batch-actions" class="hidden fixed bottom-8 left-1/2 -translate-x-1/2 bg-primary text-white px-8 py-4 rounded-full shadow-2xl z-50 flex items-center gap-6 animate-in fade-in slide-in-from-bottom-4">
+            <span class="text-sm font-bold"><span id="selected-count">0</span> vouchers selecionados</span>
+            <div class="h-6 w-px bg-white/20"></div>
+            <div class="flex gap-4">
+                <button type="submit" name="action" value="export_vouchers_pdf" class="flex items-center gap-2 hover:text-secondary-fixed transition-colors font-bold text-sm">
+                    <span class="material-symbols-outlined text-sm">picture_as_pdf</span> Gerar PDF
+                </button>
+                <button type="submit" name="action" value="revoke_selected_vouchers" class="flex items-center gap-2 hover:text-red-300 transition-colors font-bold text-sm">
+                    <span class="material-symbols-outlined text-sm">block</span> Revogar
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<!-- Side Modal Voucher -->
+<div id="side-modal-voucher" class="fixed inset-y-0 right-0 w-[420px] bg-surface-container-lowest editorial-shadow border-l border-outline-variant/20 z-[60] transform translate-x-full transition-transform duration-300 flex flex-col">
+    <div class="p-6 border-b border-outline-variant/10 flex justify-between items-center bg-secondary text-white">
+        <div>
+            <h3 class="text-lg font-bold">Gerar Vouchers em Lote</h3>
+            <p class="text-xs text-orange-100 font-medium opacity-70">Defina a quantidade e validade</p>
+        </div>
+        <button onclick="document.getElementById('side-modal-voucher').classList.add('translate-x-full')" class="p-2 hover:bg-white/10 rounded-full transition-colors">
+            <span class="material-symbols-outlined">close</span>
+        </button>
+    </div>
+    
+    <form method="POST" action="{% url 'core:admin_voucher_batch_create' %}" class="flex-1 overflow-y-auto p-6 space-y-8">
+        {% csrf_token %}
+        
+        <div class="space-y-6">
+            <label class="block">
+                <span class="text-[0.6875rem] font-bold text-outline uppercase tracking-widest block mb-2">Quantidade de Vouchers</span>
+                {{ form.quantity }}
+                <p class="text-[10px] text-outline mt-2">Máximo de 100 por lote.</p>
+            </label>
+            
+            <label class="block">
+                <span class="text-[0.6875rem] font-bold text-outline uppercase tracking-widest block mb-2">Prazo de Validade (Dias)</span>
+                {{ form.validity_days }}
+                <p class="text-[10px] text-outline mt-2">A expiração será calculada a partir de agora.</p>
+            </label>
+        </div>
+
+        <div class="bg-surface-container-low p-6 rounded-xl border border-secondary/10">
+            <div class="flex items-start gap-3">
+                <span class="material-symbols-outlined text-secondary text-lg">info</span>
+                <p class="text-[11px] text-on-surface-variant leading-relaxed">
+                    Os vouchers gerados estarão disponíveis imediatamente para impressão na listagem principal. Cada código é único e segue o padrão <span class="font-mono font-bold">XXXX-XXXX</span>.
+                </p>
+            </div>
+        </div>
+
+        <div class="pt-6 border-t border-outline-variant/10 flex gap-3 mt-auto">
+            <button type="button" onclick="document.getElementById('side-modal-voucher').classList.add('translate-x-full')" class="flex-1 py-3 border border-outline-variant text-on-surface-variant rounded-md font-bold text-sm active:scale-95 transition-all">
+                Cancelar
+            </button>
+            <button type="submit" class="flex-[1.5] py-3 bg-secondary text-white rounded-md font-bold text-sm shadow-lg shadow-secondary/20 active:scale-95 transition-all flex items-center justify-center gap-2">
+                <span class="material-symbols-outlined text-sm">auto_mode</span>
+                Gerar Lote Agora
+            </button>
+        </div>
+    </form>
+</div>
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+    const selectAll = document.getElementById('select-all');
+    const checkboxes = document.querySelectorAll('.voucher-checkbox');
+    const batchActions = document.getElementById('batch-actions');
+    const selectedCount = document.getElementById('selected-count');
+
+    function updateBatchActions() {
+        const checked = document.querySelectorAll('.voucher-checkbox:checked').length;
+        selectedCount.innerText = checked;
+        if (checked > 0) {
+            batchActions.classList.remove('hidden');
+        } else {
+            batchActions.classList.add('hidden');
+        }
+    }
+
+    selectAll.addEventListener('change', () => {
+        checkboxes.forEach(cb => cb.checked = selectAll.checked);
+        updateBatchActions();
+    });
+
+    checkboxes.forEach(cb => {
+        cb.addEventListener('change', updateBatchActions);
+    });
+</script>
+{% endblock %}

@@ -1,0 +1,70 @@
+{% extends "admin/index.html" %}
+{% load i18n static %}
+
+{% block breadcrumbs %}{% endblock %}
+
+{% block content %}
+<div id="content-main">
+    <!-- Dashboard VIPOSA -->
+    <div style="margin-bottom: 30px; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px;">
+        <!-- KPI Cards -->
+        <div style="background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); border-left: 4px solid #002c57;">
+            <div style="font-size: 10px; text-transform: uppercase; color: #666; font-weight: bold; letter-spacing: 1px;">Sessões Ativas</div>
+            <div style="font-size: 24px; font-weight: bold; color: #002c57;">{{ metrics.active_sessions }}</div>
+        </div>
+        <div style="background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); border-left: 4px solid #9f4200;">
+            <div style="font-size: 10px; text-transform: uppercase; color: #666; font-weight: bold; letter-spacing: 1px;">Vouchers (Mês)</div>
+            <div style="font-size: 24px; font-weight: bold; color: #9f4200;">{{ metrics.vouchers_month }}</div>
+        </div>
+        <div style="background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); border-left: 4px solid #002c57;">
+            <div style="font-size: 10px; text-transform: uppercase; color: #666; font-weight: bold; letter-spacing: 1px;">Novos Colaboradores</div>
+            <div style="font-size: 24px; font-weight: bold; color: #002c57;">{{ metrics.new_colleagues_month }}</div>
+        </div>
+        <div style="background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); border-left: 4px solid #9f4200;">
+            <div style="font-size: 10px; text-transform: uppercase; color: #666; font-weight: bold; letter-spacing: 1px;">Ações Hoje</div>
+            <div style="font-size: 24px; font-weight: bold; color: #9f4200;">{{ metrics.total_events_today }}</div>
+        </div>
+    </div>
+
+    <!-- Gráfico de Acessos Recentes -->
+    <div style="background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); margin-bottom: 30px;">
+        <h3 style="margin-top: 0; font-size: 14px; text-transform: uppercase; letter-spacing: 1px; color: #333;">Acessos nas últimas 24 Horas</h3>
+        <canvas id="accessChart" height="100"></canvas>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        const ctx = document.getElementById('accessChart').getContext('2d');
+        const labels = {{ metrics.graph_labels|safe }};
+        const data = {{ metrics.graph_data|safe }};
+        
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Número de Acessos',
+                    data: data,
+                    borderColor: '#002c57',
+                    backgroundColor: 'rgba(0, 44, 87, 0.1)',
+                    borderWidth: 2,
+                    fill: true,
+                    tension: 0.4
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: { display: false }
+                },
+                scales: {
+                    y: { beginAtZero: true, grid: { color: '#f0f0f0' } },
+                    x: { grid: { display: false } }
+                }
+            }
+        });
+    </script>
+
+    {{ block.super }}
+</div>
+{% endblock %}

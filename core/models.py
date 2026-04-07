@@ -65,6 +65,21 @@ class RadAcct(models.Model):
         return f"Session {self.acctsessionid} - {self.username}"
 
 
+class ActiveSession(RadAcct):
+    """
+    Proxy model para visualizar apenas sessões ativas (sem tempo de fim).
+    """
+    class Meta:
+        proxy = True
+        verbose_name = 'Sessão Ativa'
+        verbose_name_plural = 'Sessões Ativas'
+
+    objects = models.Manager() # Manager padrão
+
+    def get_queryset(self):
+        return super().get_queryset().filter(acctstoptime__isnull=True)
+
+
 # ---------------------------------------------------------
 # VIPOSA CUSTOM MODELS (Managed=True)
 # ---------------------------------------------------------
