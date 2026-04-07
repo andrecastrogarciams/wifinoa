@@ -24,6 +24,7 @@ O projeto Wi-Fi Viposa foi desenvolvido com sucesso, substituindo o portal nativ
 - [x] **Sessões Ativas:** Visualização em tempo real via tabela de accounting (`radacct`) com botão de Desconexão Remota (CoA via `pyrad`).
 
 ### 3. Backend / Segurança
+- [x] **Auto-Purge (Manutenção de Banco):** Criado o comando `python manage.py purge_vouchers` para limpeza automática de vouchers antigos.
 - [x] Rastreabilidade completa via `AuditLog` para logins e ações administrativas.
 - [x] Proxy Models e Views otimizadas.
 
@@ -33,9 +34,7 @@ O projeto Wi-Fi Viposa foi desenvolvido com sucesso, substituindo o portal nativ
 
 As seguintes tarefas estão no Backlog prontas para serem desenvolvidas na próxima sessão:
 
-1. **Auto-Purge (Manutenção de Banco):**
-   - Criar um `Management Command` do Django (ex: `python manage.py purge_vouchers`) para limpar vouchers expirados há mais de 30 dias.
-2. **Ambiente de Produção:**
+1. **Ambiente de Produção:**
    - Configurar variáveis de ambiente (`.env`) para conectar o Django ao MySQL real de produção do FreeRADIUS.
 
 ---
