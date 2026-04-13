@@ -24,7 +24,7 @@ server {
 
     location = /favicon.ico { access_log off; log_not_found off; }
     location /static/ {
-        alias /home/tap/wifinoa/core/static/;
+        alias /home/tap/wifinoa/staticfiles/;
     }
 
     location / {
