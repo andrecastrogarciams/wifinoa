@@ -139,9 +139,11 @@ Desenvolver um sistema próprio composto por:
 1. Login retorna sucesso em até 3s p95
 2. Valida credenciais via FreeRADIUS
 3. Se inválido, exibe erro
-4. Após sucesso, registra MAC
-5. Persistência no banco
-6. Feedback visual de sucesso
+4. **Obrigatório: Detecção automática de MAC via URL (redirecionamento AP).**
+5. **Se MAC ausente, bloquear login e instruir conexão via Wi-Fi.**
+6. Após sucesso, registra MAC
+7. Persistência no banco
+8. Feedback visual de sucesso
 
 ### Story 1.2 — Login visitante com voucher
 
@@ -152,9 +154,11 @@ Desenvolver um sistema próprio composto por:
 1. Leitura de QR Code preenche campos automaticamente
 2. Valida voucher no FreeRADIUS
 3. Exibe mensagem clara de sucesso/erro/expirado
-4. Registra MAC e data de uso
-5. Impede reuso em outro dispositivo
-6. Feedback visual
+4. **Obrigatório: Detecção automática de MAC via URL (redirecionamento AP).**
+5. **Se MAC ausente, bloquear login e instruir conexão via Wi-Fi.**
+6. Registra MAC e data de uso
+7. Impede reuso em outro dispositivo
+8. Feedback visual
 
 ---
 

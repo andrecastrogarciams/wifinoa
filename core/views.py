@@ -12,12 +12,18 @@ class PortalIndexView(View):
 class LoginColaboradorView(View):
     def get(self, request):
         mac = request.GET.get('mac', '')
+        if not mac:
+            messages.warning(request, "Seu dispositivo não foi identificado. Por favor, certifique-se de estar conectado à rede Wi-Fi correta para acessar o portal.")
         return render(request, 'core/login_colaborador.html', {'mac': mac})
 
     def post(self, request):
         username = request.POST.get('username')
         password = request.POST.get('password')
         mac = request.POST.get('mac')
+
+        if not mac:
+            messages.error(request, "Falha na identificação do dispositivo (MAC ausente). Acesso negado.")
+            return render(request, 'core/login_colaborador.html', {'mac': mac})
 
         # 1. Autenticação Básica (Django/RADIUS Sync)
         user = authenticate(request, username=username, password=password)
@@ -57,11 +63,17 @@ class LoginVisitanteView(View):
     def get(self, request):
         code = request.GET.get('code', '') # Suporte ao QR Code (Story 1.2)
         mac = request.GET.get('mac', '')
+        if not mac:
+            messages.warning(request, "Seu dispositivo não foi identificado. Por favor, certifique-se de estar conectado à rede Wi-Fi correta para acessar o portal.")
         return render(request, 'core/login_visitante.html', {'code': code, 'mac': mac})
 
     def post(self, request):
         code = request.POST.get('code')
         mac = request.POST.get('mac')
+
+        if not mac:
+            messages.error(request, "Falha na identificação do dispositivo (MAC ausente). Acesso negado.")
+            return render(request, 'core/login_visitante.html', {'code': code, 'mac': mac})
 
         try:
             voucher = Voucher.objects.get(code=code, is_revoked=False)

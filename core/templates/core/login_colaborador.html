@@ -10,18 +10,31 @@
         
         <div class="mb-4">
             <label class="block text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1">Usuário</label>
-            <input type="text" name="username" required class="w-full bg-[#f1f4fa] p-3 rounded-lg border-b-2 border-transparent focus:border-[#002c57] outline-none transition" placeholder="Matrícula ou Usuário">
+            <input type="text" name="username" required {% if not mac %}disabled{% endif %} class="w-full bg-[#f1f4fa] p-3 rounded-lg border-b-2 border-transparent focus:border-[#002c57] outline-none transition {% if not mac %}opacity-50 cursor-not-allowed{% endif %}" placeholder="Matrícula ou Usuário">
         </div>
         
         <div class="mb-6">
             <label class="block text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1">Senha</label>
-            <input type="password" name="password" required class="w-full bg-[#f1f4fa] p-3 rounded-lg border-b-2 border-transparent focus:border-[#002c57] outline-none transition" placeholder="••••••••">
+            <input type="password" name="password" required {% if not mac %}disabled{% endif %} class="w-full bg-[#f1f4fa] p-3 rounded-lg border-b-2 border-transparent focus:border-[#002c57] outline-none transition {% if not mac %}opacity-50 cursor-not-allowed{% endif %}" placeholder="••••••••">
         </div>
         
-        <button type="submit" class="w-full btn-viposa py-3 rounded-lg font-bold shadow-lg">
+        <button type="submit" {% if not mac %}disabled{% endif %} class="w-full btn-viposa py-3 rounded-lg font-bold shadow-lg {% if not mac %}opacity-50 cursor-not-allowed grayscale{% endif %}">
             AUTENTICAR
         </button>
     </form>
+
+    {% if messages %}
+    <div class="mt-6 flex flex-col gap-3">
+        {% for message in messages %}
+            <div class="p-4 rounded-lg text-xs font-bold border-l-4 
+                {% if message.tags == 'warning' %}bg-orange-50 text-orange-700 border-orange-500
+                {% elif message.tags == 'error' %}bg-red-50 text-red-700 border-red-500
+                {% else %}bg-blue-50 text-blue-700 border-blue-500{% endif %}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    </div>
+    {% endif %}
     
     <div class="mt-4 text-center">
         <a href="{% url 'core:portal_index' %}?{{ request.GET.urlencode }}" class="text-xs text-gray-400 hover:text-[#002c57] transition uppercase font-bold tracking-tighter">Voltar</a>

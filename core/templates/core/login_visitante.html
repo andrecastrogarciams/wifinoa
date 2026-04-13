@@ -69,13 +69,13 @@
                 <div class="flex flex-col gap-2">
                     <label class="text-[0.6875rem] font-bold tracking-widest text-on-surface-variant uppercase ml-1">Código do Voucher</label>
                     <div class="relative">
-                        <input name="code" value="{{ code }}" class="w-full bg-surface-container-highest border-none border-b-2 border-primary text-primary font-mono font-bold py-4 px-4 text-xl rounded-t-lg focus:ring-0 transition-all {% if code %}cursor-not-allowed{% endif %}" {% if code %}readonly{% endif %} type="text" placeholder="XXXX-XXXX" required/>
+                        <input name="code" value="{{ code }}" {% if not mac %}disabled{% endif %} class="w-full bg-surface-container-highest border-none border-b-2 border-primary text-primary font-mono font-bold py-4 px-4 text-xl rounded-t-lg focus:ring-0 transition-all {% if code or not mac %}cursor-not-allowed{% endif %} {% if not mac %}opacity-50{% endif %}" {% if code %}readonly{% endif %} type="text" placeholder="XXXX-XXXX" required/>
                         <span class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 text-outline">{% if code %}lock{% else %}vpn_key{% endif %}</span>
                     </div>
                 </div>
 
                 <div class="flex flex-col gap-4">
-                    <button type="submit" class="network-gradient text-white font-black py-5 rounded-xl w-full flex items-center justify-center gap-2 active:scale-[0.98] transition-transform shadow-xl shadow-primary/20 tracking-widest uppercase">
+                    <button type="submit" {% if not mac %}disabled{% endif %} class="network-gradient text-white font-black py-5 rounded-xl w-full flex items-center justify-center gap-2 active:scale-[0.98] transition-transform shadow-xl shadow-primary/20 tracking-widest uppercase {% if not mac %}opacity-50 cursor-not-allowed grayscale{% endif %}">
                         <span class="material-symbols-outlined">wifi_tethering</span>
                         CONECTAR
                     </button>
