@@ -1,7 +1,23 @@
 from django.db.models.signals import post_save, post_delete
+from django.contrib.auth.signals import user_logged_in
 from django.dispatch import receiver
 from django.contrib.auth.models import User
+from django.core.management import call_command
 from .models import UserMacMapping, RadCheck, AuditLog
+
+@receiver(user_logged_in)
+def trigger_mac_sync_on_login(sender, request, user, **kwargs):
+    """
+    Sempre que um usuário (colaborador) fizer login, disparar a sincronização
+    de MACs do FreeRADIUS para garantir que o vínculo ocorra em tempo real.
+    """
+    if not user.is_staff:
+        # Chama o comando programaticamente
+        try:
+            call_command('sync_radius_macs')
+        except Exception as e:
+            # Log silencioso para evitar quebrar o login em caso de falha no comando
+            print(f"ERRO ao disparar sync_radius_macs: {str(e)}")
 
 @receiver(post_save, sender=User)
 def sync_user_credentials_to_radius(sender, instance, created, **kwargs):
