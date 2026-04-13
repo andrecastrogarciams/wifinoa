@@ -139,11 +139,10 @@ Desenvolver um sistema próprio composto por:
 1. Login retorna sucesso em até 3s p95
 2. Valida credenciais via FreeRADIUS
 3. Se inválido, exibe erro
-4. **Obrigatório: Detecção automática de MAC via URL (redirecionamento AP).**
-5. **Se MAC ausente, bloquear login e instruir conexão via Wi-Fi.**
-6. Após sucesso, registra MAC
-7. Persistência no banco
-8. Feedback visual de sucesso
+4. **Vínculo Automático (Primeira Conexão):** Se o colaborador não possuir um MAC vinculado, a aplicação deve capturar o MAC detectado e gravá-lo permanentemente na tabela `core_usermacmapping`.
+5. **Obrigatório: Detecção automática de MAC via URL (redirecionamento AP).**
+6. **Se MAC ausente, bloquear login e instruir conexão via Wi-Fi.**
+7. Feedback visual de sucesso
 
 ### Story 1.2 — Login visitante com voucher
 
