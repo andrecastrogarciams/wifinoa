@@ -1,0 +1,13 @@
+[Unit]
+Description=Gunicorn instance to serve Wi-Fi Noa
+After=network.target
+
+[Service]
+User=tap
+Group=www-data
+WorkingDirectory=/home/tap/wifinoa
+Environment="PATH=/home/tap/wifinoa/venv/bin"
+ExecStart=/home/tap/wifinoa/venv/bin/gunicorn --workers 3 --bind unix:/home/tap/wifinoa/wifinoa.sock wifinoa_project.wsgi:application
+
+[Install]
+WantedBy=multi-user.target

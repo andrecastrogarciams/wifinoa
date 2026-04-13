@@ -4,12 +4,14 @@
 
 # Environment
 venv/
+.aiox/
 .aiox-core/
 .env
 .venv/
 env/
 ENV/
 *.env
+*.bak
 
 # Python
 __pycache__/

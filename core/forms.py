@@ -31,12 +31,21 @@ class ColaboradorForm(forms.ModelForm):
 
     def save(self, commit=True):
         user = super().save(commit=False)
-        user.set_password(self.cleaned_data["password"])
+        password = self.cleaned_data["password"]
+        user.set_password(password)
+        # Passa a senha em texto plano apenas durante este save para o signal
+        # atualizar o RADIUS sem persistir fallback inseguro.
+        user._radius_password = password
         if commit:
             user.save()
+
+            # 1. Vincular MAC Address se fornecido
             mac = self.cleaned_data.get('mac_address')
             if mac:
-                UserMacMapping.objects.create(user=user, mac_address=mac)
+                UserMacMapping.objects.update_or_create(
+                    user=user, 
+                    defaults={'mac_address': mac}
+                )
         return user
 
 class VoucherBatchForm(forms.Form):
