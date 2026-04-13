@@ -218,11 +218,12 @@ Desenvolver um sistema próprio composto por:
 **Acceptance Criteria:**
 
 1. Apenas 1 MAC por credencial
-2. Bloqueia novo acesso
-3. Permite reset manual
-4. Persistência
-5. Feedback de erro
-6. Controle de sessão
+2. **Sincronização Automática: Gravar o MAC detectado pelo FreeRADIUS (Calling-Station-Id) nos registros da aplicação.**
+3. Bloqueia novo acesso se MAC divergir do vinculado
+4. Permite reset manual
+5. Persistência
+6. Feedback de erro
+7. Controle de sessão
 
 ### Story 3.2 — Visualizar sessões ativas
 
